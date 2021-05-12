@@ -7,16 +7,16 @@ import LoginHooks from './components/LoginHooks';
 import LogoutHooks from './components/LogoutHooks';
 import { apiTest } from './lib/api';
 import Search from './components/Search';
-import NavBar from  './components/NavBar'
+import NavBar from './components/NavBar'
 
 function App() {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <div className="App">
-      
+
       <NavBar />
-    
+
     </div>
   );
 }

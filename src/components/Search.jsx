@@ -1,29 +1,29 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import SearchResult from './SearchResult';
+import React from "react";
+import { useState, useEffect } from "react";
+import SearchResult from "./SearchResult";
 // import { apiTest } from '../lib/api';
-var unirest = require('unirest');
+var unirest = require("unirest");
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cities, setCities] = useState('');
-  const [hotels, setHotels] = useState('');
-  const [landmarks, setLandmarks] = useState('');
-  const [transport, setTransport] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [cities, setCities] = useState("");
+  const [hotels, setHotels] = useState("");
+  const [landmarks, setLandmarks] = useState("");
+  const [transport, setTransport] = useState("");
 
   // useEffect(() => {}, [searchResult]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
     unirest
-      .get('https://hotels4.p.rapidapi.com/locations/search')
+      .get("https://hotels4.p.rapidapi.com/locations/search")
       .query({
         query: searchQuery,
-        locale: 'en_US',
+        locale: "en_US",
       })
       .headers({
-        'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
-        'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+        "x-rapidapi-key": "58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126",
+        "x-rapidapi-host": "hotels4.p.rapidapi.com",
         useQueryString: true,
       })
       .end(function (result) {
@@ -126,13 +126,13 @@ const Search = () => {
         </button>
       </form>
       <br></br>
-      {cities && <SearchResult searchResult={cities} heading={'Cities'} />}
-      {hotels && <SearchResult searchResult={hotels} heading={'Hotels'} />}
+      {cities && <SearchResult searchResult={cities} heading={"Cities"} />}
+      {hotels && <SearchResult searchResult={hotels} heading={"Hotels"} />}
       {landmarks && (
-        <SearchResult searchResult={landmarks} heading={'Landmarks'} />
+        <SearchResult searchResult={landmarks} heading={"Landmarks"} />
       )}
       {transport && (
-        <SearchResult searchResult={transport} heading={'Transport'} />
+        <SearchResult searchResult={transport} heading={"Transport"} />
       )}
     </>
   );
