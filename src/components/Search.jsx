@@ -1,5 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import {
+  apiTest2,
+  getLocations,
+  getMetaData,
+  getPropertiesDetails,
+  getPropertiesList,
+  getPropertiesPhotos,
+} from '../lib/api';
 import SearchResult from './SearchResult';
 // import { apiTest } from '../lib/api';
 var unirest = require('unirest');
@@ -11,7 +19,13 @@ const Search = () => {
   const [landmarks, setLandmarks] = useState('');
   const [transport, setTransport] = useState('');
 
-  // useEffect(() => {}, [searchResult]);
+  useEffect(() => {
+    // getLocations();
+    // getMetaData();
+    // getPropertiesList();
+    // getPropertiesDetails();
+    getPropertiesPhotos();
+  }, []);
 
   const onSubmit = async (event) => {
     event.preventDefault();

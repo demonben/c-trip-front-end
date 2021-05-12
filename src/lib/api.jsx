@@ -1,6 +1,8 @@
 var unirest = require('unirest');
 
-export async function apiTest(query) {
+const rapidKey = '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126';
+
+export async function getLocations(query) {
   let data = await unirest
     .get('https://hotels4.p.rapidapi.com/locations/search')
     .query({
@@ -17,6 +19,123 @@ export async function apiTest(query) {
       console.log(result.body.suggestions);
     });
   console.log(data.Request);
+}
+
+export async function getMetaData() {
+  let req = unirest('GET', 'https://hotels4.p.rapidapi.com/get-meta-data');
+
+  req.headers({
+    'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
+    'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+    useQueryString: true,
+  });
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
+}
+
+export async function getPropertiesList() {
+  var req = unirest('GET', 'https://hotels4.p.rapidapi.com/properties/list');
+
+  req.query({
+    adults1: '1',
+    pageNumber: '1',
+    destinationId: '1506246',
+    pageSize: '25',
+    checkOut: '2020-01-15',
+    checkIn: '2020-01-08',
+    sortOrder: 'PRICE',
+    locale: 'en_US',
+    currency: 'USD',
+  });
+
+  req.headers({
+    'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
+    'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+    useQueryString: true,
+  });
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
+}
+
+export async function getPropertiesDetails() {
+  var req = unirest(
+    'GET',
+    'https://hotels4.p.rapidapi.com/properties/get-details'
+  );
+
+  req.query({
+    id: '424023',
+    checkIn: '2020-01-08',
+    checkOut: '2020-01-15',
+    currency: 'USD',
+    locale: 'en_US',
+    adults1: '1',
+  });
+
+  req.headers({
+    'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
+    'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+    useQueryString: true,
+  });
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
+}
+
+export async function getPropertiesPhotos() {
+  var req = unirest(
+    'GET',
+    'https://hotels4.p.rapidapi.com/properties/get-hotel-photos'
+  );
+
+  req.query({
+    id: '1178275040',
+  });
+
+  req.headers({
+    'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
+    'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+    useQueryString: true,
+  });
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
+}
+
+export async function getReviews() {
+  var req = unirest('GET', 'https://hotels4.p.rapidapi.com/reviews/list');
+
+  req.query({
+    id: '1178275040',
+    page: '1',
+    loc: 'en_US',
+  });
+
+  req.headers({
+    'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
+    'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+    useQueryString: true,
+  });
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
 }
 
 // var req = unirest('GET', 'https://hotels4.p.rapidapi.com/locations/search');
