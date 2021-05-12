@@ -6,18 +6,10 @@ import Logout from './components/Logout';
 import LoginHooks from './components/LoginHooks';
 import LogoutHooks from './components/LogoutHooks';
 import { apiTest } from './lib/api';
+import Search from './components/Search';
 
 function App() {
-  useEffect(() => {
-    getApiTest();
-  }, []);
-
-  const getApiTest = async () => {
-    try {
-      const result = await apiTest();
-      console.log(result);
-    } catch (error) {}
-  };
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
@@ -29,6 +21,7 @@ function App() {
       <LoginHooks />
       <LogoutHooks />
       <br />
+      <Search />
     </div>
   );
 }
