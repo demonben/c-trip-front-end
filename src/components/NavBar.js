@@ -6,40 +6,43 @@ import LogoutHooks from './LogoutHooks'
 import Search from './Search'
 import Home from './pages/Home'
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import {
+    NavLink, Link
+} from "react-router-dom";
 
 
 const NavBar = () => {
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+           
+                
                 <Nav className="mr-auto">
-                    <Nav.Link className="nav-item" href="/">
+                    <Link className="nav-item" exact to="/">
                         Home
-                    </Nav.Link>
+                    </Link>
                 </Nav>
                 <Nav className="mr-auto">
-                    <Nav.Link className="nav-item" href="/search">
+                    <Link className="nav-item" to="/search">
                         Search
-                    </Nav.Link>
+                    </Link>
                 </Nav>
                 <Nav className="mr-auto">
-                    <Nav.Link className="nav-item" href="/login">
-                        login
-                    </Nav.Link>
+                    <Link className="nav-item" to="/login">
+                    <LoginHooks />
+                    <LogoutHooks />
+                    </Link>
                 </Nav>
                 <Form inline></Form>
-            </Navbar>
+
             
-            <p>The Components way</p>
-            <Login />
-            <br />
-            <Logout />
-            <p>The Hooks way</p>
-            <LoginHooks />
-            <LogoutHooks />
             <br />
             <Search />
             <Home />
+
+            {/* <p>The Components way</p>
+            <Login />
+            <br />
+            <Logout /> */}
         </div>
     )
 }

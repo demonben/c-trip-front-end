@@ -6,8 +6,19 @@ import Logout from './components/Logout';
 import LoginHooks from './components/LoginHooks';
 import LogoutHooks from './components/LogoutHooks';
 import { apiTest } from './lib/api';
-import Search from './components/Search';
-import NavBar from './components/NavBar'
+
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+
+
+
+import Home from "./components/pages/Home";
+import NavBar from "./components/NavBar"
+import Search from "./components/Search"
 
 function App() {
   useEffect(() => { }, []);
@@ -15,8 +26,22 @@ function App() {
   return (
     <div className="App">
 
-      <NavBar />
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
 
+          <Route path="/search" >
+            <Search />
+          </Route>
+
+          <Route path="/login" >
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
