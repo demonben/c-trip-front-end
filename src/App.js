@@ -19,6 +19,7 @@ import {
 import Home from "./components/pages/Home";
 import NavBar from "./components/NavBar"
 import Search from "./components/Search"
+import Hotel  from './components/pages/Hotel'
 
 function App() {
   useEffect(() => { }, []);
@@ -39,6 +40,10 @@ function App() {
 
           <Route path="/login" >
             <Login />
+          </Route>
+
+          <Route path="/hotel" >
+            <Hotel />
           </Route>
         </Switch>
       </Router>
