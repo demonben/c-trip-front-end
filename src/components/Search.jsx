@@ -20,11 +20,14 @@ const Search = () => {
   const [transport, setTransport] = useState('');
 
   useEffect(() => {
+    // ATTENTION!!! Below are the 5 endpoints available to us. See 'api.jsx' for the mock queries + console.logs. The data you get when performing a search, is from the first endpoint, used in 'onSubmit'.
+    // DO NOT UNMARK all endpoints at the same time - you can only send one query (for one endpoint) at a time.
     // getLocations();
-    // getMetaData();
+    // getMetaData(); // Not usefull
     // getPropertiesList();
-    // getPropertiesDetails();
-    getPropertiesPhotos();
+    getPropertiesDetails();
+    // getPropertiesPhotos();
+    // getReviews
   }, []);
 
   const onSubmit = async (event) => {

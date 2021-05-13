@@ -18,7 +18,6 @@ export async function getLocations(query) {
       console.log(result);
       console.log(result.body.suggestions);
     });
-  console.log(data.Request);
 }
 
 export async function getMetaData() {
@@ -43,7 +42,7 @@ export async function getPropertiesList() {
   req.query({
     adults1: '1',
     pageNumber: '1',
-    destinationId: '1506246',
+    destinationId: '112922',
     pageSize: '25',
     checkOut: '2020-01-15',
     checkIn: '2020-01-08',
@@ -72,7 +71,7 @@ export async function getPropertiesDetails() {
   );
 
   req.query({
-    id: '424023',
+    id: '139009',
     checkIn: '2020-01-08',
     checkOut: '2020-01-15',
     currency: 'USD',
