@@ -22,9 +22,9 @@ const Search = () => {
   useEffect(() => {
     // ATTENTION!!! Below are the 5 endpoints available to us. See 'api.jsx' for the mock queries + console.logs. The data you get when performing a search, is from the first endpoint, used in 'onSubmit'.
     // DO NOT UNMARK all endpoints at the same time - you can only send one query (for one endpoint) at a time.
-    // getLocations();
+    // getLocations(); // This one is used below for the search function. You get a destinationId, which for a hotel is the hotel ID
     // getMetaData(); // Not usefull
-    // getPropertiesList();
+    // getPropertiesList(); // Not usefull, cannot be used to look up the hotel ID
     getPropertiesDetails();
     // getPropertiesPhotos();
     // getReviews
