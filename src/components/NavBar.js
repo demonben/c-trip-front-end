@@ -6,6 +6,7 @@ import LogoutHooks from './LogoutHooks'
 import Search from './Search'
 import Home from './pages/Home'
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+<<<<<<< Updated upstream
 import {
     NavLink, Link
 } from "react-router-dom";
@@ -33,6 +34,36 @@ const NavBar = () => {
                     </Link>
                 </Nav>
                 <Form inline></Form>
+=======
+import { NavLink, Link } from "react-router-dom";
+import { Hotel } from "@material-ui/icons";
+
+const NavBar = () => {
+	return (
+		<div>
+			<Nav className="mr-auto">
+				<Link className="nav-item" exact to="/">
+					<Home />
+				</Link>
+			</Nav>
+			<Nav className="mr-auto">
+				<Link className="nav-item" to="/search">
+					<Search />
+				</Link>
+			</Nav>
+			<Nav className="mr-auto">
+				<Link className="nav-item" to="/login">
+					<LoginHooks />
+					<LogoutHooks />
+				</Link>
+			</Nav>
+            <Nav className="mr-auto">
+				<Link className="nav-item" to="/hotel">
+					<Hotel />
+				</Link>
+			</Nav>
+			<Form inline></Form>
+>>>>>>> Stashed changes
 
             
             <br />
