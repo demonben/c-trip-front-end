@@ -1,46 +1,29 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import {
-  apiTest2,
-  getLocations,
-  getMetaData,
-  getPropertiesDetails,
-  getPropertiesList,
-  getPropertiesPhotos,
-} from '../lib/api';
-import SearchResult from './SearchResult';
+import React from "react";
+import { useState, useEffect } from "react";
+import SearchResult from "./SearchResult";
 // import { apiTest } from '../lib/api';
-var unirest = require('unirest');
+var unirest = require("unirest");
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cities, setCities] = useState('');
-  const [hotels, setHotels] = useState('');
-  const [landmarks, setLandmarks] = useState('');
-  const [transport, setTransport] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [cities, setCities] = useState("");
+  const [hotels, setHotels] = useState("");
+  const [landmarks, setLandmarks] = useState("");
+  const [transport, setTransport] = useState("");
 
-  useEffect(() => {
-    // ATTENTION!!! Below are the 5 endpoints available to us. See 'api.jsx' for the mock queries + console.logs. The data you get when performing a search, is from the first endpoint, used in 'onSubmit'.
-    // DO NOT UNMARK all endpoints at the same time - you can only send one query (for one endpoint) at a time.
-    // getLocations(); // This one is used below for the search function. You get a destinationId, which for a hotel is the hotel ID
-    // getMetaData(); // Not usefull
-    // getPropertiesList(); // Not usefull, cannot be used to look up the hotel ID
-    getPropertiesDetails();
-    // getPropertiesPhotos();
-    // getReviews
-  }, []);
+  // useEffect(() => {}, [searchResult]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
     unirest
-      .get('https://hotels4.p.rapidapi.com/locations/search')
+      .get("https://hotels4.p.rapidapi.com/locations/search")
       .query({
         query: searchQuery,
-        locale: 'en_US',
+        locale: "en_US",
       })
       .headers({
-        'x-rapidapi-key': '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126',
-        'x-rapidapi-host': 'hotels4.p.rapidapi.com',
+        "x-rapidapi-key": "58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126",
+        "x-rapidapi-host": "hotels4.p.rapidapi.com",
         useQueryString: true,
       })
       .end(function (result) {
@@ -143,13 +126,13 @@ const Search = () => {
         </button>
       </form>
       <br></br>
-      {cities && <SearchResult searchResult={cities} heading={'Cities'} />}
-      {hotels && <SearchResult searchResult={hotels} heading={'Hotels'} />}
+      {cities && <SearchResult searchResult={cities} heading={"Cities"} />}
+      {hotels && <SearchResult searchResult={hotels} heading={"Hotels"} />}
       {landmarks && (
-        <SearchResult searchResult={landmarks} heading={'Landmarks'} />
+        <SearchResult searchResult={landmarks} heading={"Landmarks"} />
       )}
       {transport && (
-        <SearchResult searchResult={transport} heading={'Transport'} />
+        <SearchResult searchResult={transport} heading={"Transport"} />
       )}
     </>
   );
