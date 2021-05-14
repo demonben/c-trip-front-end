@@ -28,11 +28,7 @@ const NavBar = () => {
 					<LogoutHooks />
 				</Link>
 			</Nav>
-            {/* <Nav className="mr-auto">
-				<Link className="nav-item" to="/hotel">
-					<Hotel />
-				</Link>
-			</Nav> */}
+          
 			<Form inline></Form>
 
             
