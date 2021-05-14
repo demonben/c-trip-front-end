@@ -16,7 +16,10 @@ export async function getLocations(query) {
     })
     .end(function (result) {
       console.log(result);
-      console.log(result.body.suggestions);
+      console.log(result.body.suggestions[1].entities);
+      result.body.suggestions[1].entities.forEach((entity) =>
+        console.log(entity.destinationId)
+      );
     });
 }
 
@@ -88,7 +91,10 @@ export async function getPropertiesDetails() {
   req.end(function (res) {
     if (res.error) throw new Error(res.error);
 
-    console.log(res.body);
+    console.log(res.body.data.body); // name hotel
+    console.log(res.body); // address
+    console.log(res.body); // rating
+    console.log(res.body); // price missing: image
   });
 }
 

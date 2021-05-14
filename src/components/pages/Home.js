@@ -1,13 +1,13 @@
 // import { Link } from "react-router-dom";
 
-import { TextField } from "@material-ui/core";
+import { TextField } from '@material-ui/core';
 
 export default function Home() {
-	// const { user } = useContext(setUserTokenContext);
-	// if (!user) {
-	return (
-		<>
-			{/* <form  noValidate>
+  // const { user } = useContext(setUserTokenContext);
+  // if (!user) {
+  return (
+    <>
+      {/* <form  noValidate>
   <TextField
     id="time"
     label="Alarm clock"
@@ -22,13 +22,12 @@ export default function Home() {
     }}
   />
 </form> */}
-			{/* <Segment style={{ padding: "2em 0em" }} vertical>
+      {/* <Segment style={{ padding: "2em 0em" }} vertical>
 					<Grid centered stackable>
 						<Grid.Column width={14}> */}
-			<p>"Welcome, Friend on cTrip!"</p>
+      <p>"Welcome, Friend on cTrip!"</p>
 
-
-			{/* <Image
+      {/* <Image
 								centered
 								src={
 									"https://image.freepik.com/free-photo/group-pet_87557-4334.jpg"
@@ -39,7 +38,7 @@ export default function Home() {
 							<Header as="h3" style={{ fontSize: "2em" }}>
 								Why it's a great idea to adopt a pet?
 							</Header> */}
-			{/* 
+      {/* 
 							// <p style={{ fontSize: "1.43em" }}>
 							// 	Pet adoption is quickly becoming the preferred way to find a new
 							// 	dog, puppy, cat or kitten. Best of all, there are so many
@@ -51,7 +50,7 @@ export default function Home() {
 							// 	manage loneliness and depression by giving us companionship.
 							// </p> */}
 
-			{/* {/* <Link to="/SearchAFriend">
+      {/* {/* <Link to="/SearchAFriend">
 								<Button color="orange" icon="plus" widths="7">
 									<p>Search pets</p>
 								</Button>
@@ -59,6 +58,6 @@ export default function Home() {
 						</Grid.Column>
 					</Grid>
 				</Segment> */}
-		</>
-	)
+    </>
+  );
 }
