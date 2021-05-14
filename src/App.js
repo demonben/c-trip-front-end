@@ -19,16 +19,16 @@ import {
 import Home from "./components/pages/Home";
 import NavBar from "./components/NavBar"
 import Search from "./components/Search"
-import Hotel  from './components/pages/Hotel'
+import Hotel  from './components/Hotel'
 
 function App() {
   useEffect(() => { }, []);
 
   return (
     <div className="App">
-
-      <Router>
-        <NavBar />
+ 
+      {/* <Router> */}
+       {/* <NavBar />
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -40,13 +40,13 @@ function App() {
 
           <Route path="/login" >
             <Login />
-          </Route>
+          </Route> */}
 
-          <Route path="/hotel" >
+          {/* <Route path="/hotel" exact> */}
             <Hotel />
-          </Route>
-        </Switch>
-      </Router>
+          {/* </Route>
+        {/* </Switch> */}
+      {/* </Router> */} 
     </div>
   );
 }
