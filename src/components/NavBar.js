@@ -1,10 +1,10 @@
-import React from 'react'
-import Login from './Login'
-import LoginHooks from './LoginHooks'
-import Logout from './Logout'
-import LogoutHooks from './LogoutHooks'
-import Search from './Search'
-import Home from './pages/Home'
+import React from "react";
+import Login from "./Login";
+import LoginHooks from "./LoginHooks";
+import Logout from "./Logout";
+import LogoutHooks from "./LogoutHooks";
+import Search from "./Search";
+import Home from "./pages/Home";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import { Hotel } from "@material-ui/icons";
@@ -28,20 +28,18 @@ const NavBar = () => {
 					<LogoutHooks />
 				</Link>
 			</Nav>
-          
 			<Form inline></Form>
 
-            
-            <br />
-            <Search />
-            <Home />
+			<br />
+			<Search />
+			<Home />
 
-            {/* <p>The Components way</p>
+			{/* <p>The Components way</p>
             <Login />
             <br />
             <Logout /> */}
-        </div>
-    )
-}
+		</div>
+	);
+};
 
-export default NavBar
+export default NavBar;
