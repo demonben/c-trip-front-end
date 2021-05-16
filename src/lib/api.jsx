@@ -162,3 +162,26 @@ export async function getReviews() {
 //   .end(function (result) {
 //     console.log(result.status, result.headers, result.body);
 //   });
+
+/*********************************/
+// Below -> Marc
+
+const newUser = {             // MOCK
+  firstName : "michael",
+  lastName : "jackson",
+  email : "michael@jackson.com",
+  password : "michael",
+  phoneNumber : "9320878"
+}
+export function createUser(newUser) {
+  return axios.post('http://127.0.0.1:5500/signup', newUser);
+}
+
+
+const user = {
+  email : "michael@jackson.com",
+  password : "michael"
+}
+export function logInUser(user) {
+  return axios.post('http://127.0.0.1:5500/login', user);
+}
