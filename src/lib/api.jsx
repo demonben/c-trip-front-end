@@ -166,6 +166,7 @@ export async function getReviews() {
 /*********************************/
 // Below -> Marc
 
+//sign up without google:
 const newUser = {             // MOCK
   firstName : "michael",
   lastName : "jackson",
@@ -177,7 +178,7 @@ export function createUser(newUser) {
   return axios.post('http://127.0.0.1:5500/signup', newUser);
 }
 
-
+//log in without google
 const user = {
   email : "michael@jackson.com",
   password : "michael"
