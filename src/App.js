@@ -17,7 +17,8 @@ import Home from "./components/pages/Home";
 import NavBar from "./components/NavBar"
 // import Search from "./components/pages/search/Search"
 import {SearchFront} from "./components/pages/search/SearchFront"
-import Hotel  from './components/pages/Hotel'
+// import Hotel  from './components/pages/Hotel'
+import Hotel  from './components/Hotel'
 
 function App() {
   useEffect(() => { }, []);
