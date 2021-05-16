@@ -14,7 +14,7 @@ body{
   background-image: url("https://res.cloudinary.com/alinanovof/image/upload/v1620928027/pexels-tatiana-614484_wcyyy3.jpg");
 }
  
-/* Search components */
+/* Search components start*/
 .hotelsList{
   display: grid;
   /* grid-auto-flow: column; */
@@ -24,7 +24,15 @@ body{
 }
 
 .hotelItem{
+  margin-top: 10px;
   padding: 18px;
   border: indigo solid 1px;
 }
+.search{
+margin-top: 10px;
+}
+#button{
+margin-top: 10px;
+}
+/* Search components end*/
 

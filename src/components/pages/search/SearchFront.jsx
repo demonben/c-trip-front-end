@@ -2,95 +2,106 @@ import React from "react";
 import { useState } from "react";
 import { TextField } from "@material-ui/core";
 import { ListOfResults } from "./ListOfResults";
+import Button from "@material-ui/core/Button";
 
 export const SearchFront = () => {
   const [search, setSearch] = useState("");
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [numberOfRoom, setNumberOfRoom] = useState("");
+  const [adults, setAdults] = useState("");
 
-   const [hotelsList, setHotelsList] = useState([1, 2, 3, 4, 5]);
+  const [hotelsList, setHotelsList] = useState([1, 2, 3, 4, 5]);
 
   const searchHandler = () => {
-    console.log("search", search);
-    console.log("checkInDate", checkInDate);
-    console.log("checkOutDate", checkOutDate);
-    console.log("number of room", numberOfRoom);
 
     const searchObject = {
       search,
       checkInDate,
       checkOutDate,
       numberOfRoom,
+      adults,
     };
     console.log(searchObject);
   };
 
   return (
     <div>
-      <h1>Search</h1>
-      <div>
-        <label htmlFor="hotelName">Destination/Property name: </label>
-        <input
-          type="search"
-          className="search"
-          name="username"
-          placeholder="Tel-aviv"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      <TextField
+        id="standard-search"
+        label="Where are you going?"
+        type="search"
+        defaultValue={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      <div>
-        <label htmlFor="hotelName">Check-in-date</label>
-        <input
-          type="date"
-          className="search"
-          placeholder="date"
-          value={checkInDate}
-          onChange={(e) => setCheckInDate(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="hotelName">Check-out-date</label>
-        <input
-          type="date"
-          className="search"
-          placeholder="date"
-          value={checkOutDate}
-          onChange={(e) => setCheckOutDate(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="hotelName">Number of room</label>
-        <input
-          type="number"
-          className="search"
-          placeholder="1 room"
-          value={numberOfRoom}
-          onChange={(e) => setNumberOfRoom(e.target.value)}
-        />
-      </div>
-      <form>
+      <form noValidate>
         <TextField
-          required
-          id="standard-required"
-          label="search hotel"
-          defaultValue="Hello World"
+          id="check-in-date"
+          label="check-in-date"
+          type="date"
+          defaultValue={checkInDate}
+          onChange={(e) => setCheckInDate(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
       </form>
 
-      <button
+      <form noValidate>
+        <TextField
+          id="check-out-date"
+          label="check-out-date"
+          type="date"
+          defaultValue={checkOutDate}
+          onChange={(e) => setCheckOutDate(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+
+      <form noValidate>
+        <TextField
+          id="numberOfRoom"
+          label="number of room"
+          type="number"
+          defaultValue={numberOfRoom}
+          onChange={(e) => setNumberOfRoom(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+
+      <form noValidate>
+        <TextField
+          id="numberOfAdults"
+          label="number of adults"
+          type="number"
+          // value={adults}
+          defaultValue={adults}
+          onChange={(e) => setAdults(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+
+      <Button
+        variant="contained"
+        color="primary"
         type="button"
-        className=" button btn btn-primary "
+        id="button"
         onClick={() => searchHandler()}
       >
         Search
-      </button>
-
+      </Button>
       <ListOfResults hotelsList={hotelsList} />
     </div>
   );
 };
+
+
+
+  
