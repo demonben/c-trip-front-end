@@ -1,4 +1,5 @@
 import React from "react";
+
 import { NavLink } from "react-router-dom";
 import { AppBar, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -53,5 +54,4 @@ const NavBar = () => {
     </AppBar>
   );
 };
-
 export default NavBar;
