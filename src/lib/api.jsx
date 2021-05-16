@@ -2,6 +2,26 @@ var unirest = require('unirest');
 
 const rapidKey = '58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126';
 
+const axios = require("axios").default;
+const BaseUrl = "http://0.0.0.0:5000";
+
+function getAuthConfig(token) {
+  return {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+}
+
+export async function searchRequest(){
+  const hotel = "hotel"
+   const response = await axios.get(
+     `${BaseUrl}/animals/type/${hotel}`,
+     getAuthConfig()
+   );
+   return response.data.animals;
+}
+
 export async function getLocations(query) {
   let data = await unirest
     .get('https://hotels4.p.rapidapi.com/locations/search')
