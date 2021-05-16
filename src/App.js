@@ -37,7 +37,7 @@ function App() {
             <LogoutHooks/>
           </Route>
 
-          <Route path="/hotel" >
+          <Route path="/hotel" exact>
             <Hotel />
           </Route>
         </Switch>
