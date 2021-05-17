@@ -7,6 +7,7 @@ import Dialog from "@material-ui/core/Dialog";
 import LoginHooks from "./LoginHooks";
 import LogoutHooks from "./LogoutHooks";
 import { useAuth } from "../context/AuthContext";
+import LoginForm from "./LoginForm";
 
 const useStyles = makeStyles((theme) => ({
   navLink: {
@@ -20,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(40),
   },
   btn: {
-    marginRight: theme.spacing(10),
-    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(1),
     border: "2px solid black",
     padding: "0.5rem",
     paddingLeft: "1.5rem",
@@ -45,6 +46,12 @@ const NavBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const handleModalOpen = () => setModalIsOpen(true);
   const handleModalClose = () => setModalIsOpen(false);
+  const [logoutOpen, setLogoutOpen] = useState(false);
+  const handleLogoutOpen = () => setLogoutOpen(true);
+  const handleLogoutClose = () => setLogoutOpen(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
   const classes = useStyles();
   return (
     <AppBar position="static" color="transparent" className={classes.bar}>
@@ -60,14 +67,21 @@ const NavBar = () => {
           Search
         </NavLink>
         
-          <Link className={classes.btn} onClick={handleModalOpen}>
-            Login
-          </Link>
-        
-        
-          <Link className={classes.btn} onClick={handleModalOpen}>
+        {!localStorage.authToken && 
+        (<>
+        <Link className={classes.btn} onClick={handleModalOpen}>
+        Sign Up
+      </Link>
+      <Link className={classes.btn} onClick={handleLoginOpen}>
+        Login
+      </Link>
+      </>)
+        }
+          
+          {localStorage.authToken && 
+          <Link className={classes.btn} onClick={handleLogoutOpen}>
             Log Out
-          </Link>
+          </Link>}
         
         <Dialog
           open={modalIsOpen}
@@ -77,7 +91,26 @@ const NavBar = () => {
         >
           <div className={classes.dialog}>
             <LoginHooks hideModal={handleModalClose} />
-            <LogoutHooks hideModal={handleModalClose} />
+          </div>
+        </Dialog>
+        <Dialog
+          open={logoutOpen}
+          onClose={handleLogoutClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div className={classes.dialog}>
+            <LogoutHooks hideModal={handleLogoutClose} />
+          </div>
+        </Dialog>
+        <Dialog
+          open={loginOpen}
+          onClose={handleLoginClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div className={classes.dialog}>
+            <LoginForm hideModal={handleLoginClose} />
           </div>
         </Dialog>
       </Toolbar>

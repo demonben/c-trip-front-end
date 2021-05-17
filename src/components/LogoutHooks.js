@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import clientId from '../utils/clientId';
 import { useAuth } from "../context/AuthContext";
-import { refreshTokenSetup } from '../utils/refreshToken';
+import Button from "@material-ui/core/Button";
+import { CircularProgress } from '@material-ui/core';
 
 
 function LogoutHooks(props) {
   const auth = useAuth();
+  const [loading, setLoading] = useState(false)
   const onLogoutSuccess = (res) => {
-    // auth.removeToken();
+    setLoading(true)
     console.log('Logged out Success');
-    // alert('Logged out Successfully ✌');
-    refreshTokenSetup(res);
+    localStorage.removeItem('authToken')
     props.hideModal()
+    setLoading(false)
   };
 
   const onFailure = () => {
@@ -26,11 +28,14 @@ function LogoutHooks(props) {
   });
 
   return (
-    <button onClick={signOut} className="button">
+    <>
+    {loading && <CircularProgress />}
+    <Button variant="contained" onClick={signOut} className="button">
       <img src="icons/google.svg" alt="google login" className="icon"></img>
 
       <span className="buttonText">Sign out</span>
-    </button>
+    </Button>
+    </>
   );
 }
 
