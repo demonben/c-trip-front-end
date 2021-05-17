@@ -1,17 +1,20 @@
 import React from 'react';
 import { useGoogleLogin } from 'react-google-login';
 import clientId from '../utils/clientId';
-
+import { useAuth } from '../context/AuthContext'
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
 
-function LoginHooks() {
-  const onSuccess = (res) => {
+function LoginHooks(props) {
+  const auth = useAuth();
+  const onSuccess = async (res) => {
+    // auth.saveToken(token)
     console.log('Login Success: currentUser:', res.profileObj);
     alert(
       `Logged in successfully welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
     );
     refreshTokenSetup(res);
+    props.hideModal()
   };
 
   const onFailure = (res) => {
