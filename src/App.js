@@ -15,7 +15,8 @@ import {
 } from "react-router-dom";
 import Home from "./components/pages/Home";
 import NavBar from "./components/NavBar"
-import Search from "./components/Search"
+// import Search from "./components/pages/search/Search"
+import {SearchFront} from "./components/pages/search/SearchFront"
 import Hotel  from './components/pages/Hotel'
 
 function App() {
@@ -30,14 +31,15 @@ function App() {
             <Home />
           </Route>
           <Route path="/search" >
-            <Search />
+            <SearchFront/>
+            {/* <Search /> */}
           </Route>
           <Route path="/login" >
             <LoginHooks />
             <LogoutHooks/>
           </Route>
 
-          <Route path="/hotel" >
+          <Route path="/hotel" exact>
             <Hotel />
           </Route>
         </Switch>

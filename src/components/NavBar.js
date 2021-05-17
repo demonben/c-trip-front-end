@@ -1,14 +1,9 @@
-import React from 'react'
-import Login from './Login'
-import LoginHooks from './LoginHooks'
-import Logout from './Logout'
-import LogoutHooks from './LogoutHooks'
-import Search from './Search'
-import Home from './pages/Home'
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-import {
-    NavLink, Link
-} from "react-router-dom";
+
+import React from "react";
+
+import { NavLink } from "react-router-dom";
+import { AppBar, Toolbar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     navLink: {

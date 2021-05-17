@@ -11,7 +11,11 @@ const Search = () => {
   const [landmarks, setLandmarks] = useState("");
   const [transport, setTransport] = useState("");
 
-  // useEffect(() => {}, [searchResult]);
+ 
+
+  useEffect(() => {
+    console.log(hotels);
+  }, [hotels]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -27,15 +31,17 @@ const Search = () => {
         useQueryString: true,
       })
       .end(function (result) {
-        console.log(result);
-        console.log({ city: result.body.suggestions[0].entities });
+        // console.log(result);
+        // console.log({ city: result.body.suggestions[0].entities });
         console.log({ hotel: result.body.suggestions[1].entities });
+        console.log("hotel name", {
+          hotel_name: result.body.suggestions[1].entities[0].name});
         console.log({
           landmark: result.body.suggestions[2].entities,
         });
-        console.log({
-          transport: result.body.suggestions[3].entities,
-        });
+        // console.log({
+        //   transport: result.body.suggestions[3].entities,
+        // });
         setCities(
           JSON.stringify({ city: result.body.suggestions[0].entities })
         );
