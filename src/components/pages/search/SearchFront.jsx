@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
 import { ListOfResults } from "./ListOfResults";
 import Button from "@material-ui/core/Button";
-import { searchRequest } from "../../lib/api";
+import { searchRequest } from "../../../lib/api";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const hotelMockInfo = {
