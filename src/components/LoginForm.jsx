@@ -45,8 +45,7 @@ function LoginForm(props) {
         firstName: res.profileObj.givenName,
         lastName: res.profileObj.familyName,
     }
-    const token = res.tokenObj.id_token
-    // await logInGoogle(user, token)
+    await logInGoogle(user)
     setLoading(true);
     localStorage.setItem("authToken", res.tokenObj.id_token);
     props.hideModal();

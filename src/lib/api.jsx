@@ -201,7 +201,7 @@ const newUser = {
   phoneNumber: "9320878",
 };
 export function createUser(newUser) {
-  return axios.post("http://127.0.0.1:5500/signup", newUser);
+  return axios.post("https://ctrip-server.herokuapp.com/signup", newUser);
 }
 
 //log in without google
@@ -247,11 +247,11 @@ export function getTripByUserId(trip, token) {
     });
 }
 export async function logInUser(user) {
-  const response = await axios.post('http://127.0.0.1:5500/login', user);
+  const response = await axios.post('https://ctrip-server.herokuapp.com/login', user);
   return response.data
 }
 
 export async function logInGoogle(user) {
-  const response = await axios.post('http://127.0.0.1:5500/google', user);
+  const response = await axios.post('https://ctrip-server.herokuapp.com/google', user);
   return response.data
 }
