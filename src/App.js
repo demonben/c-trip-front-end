@@ -1,11 +1,11 @@
-import React from 'react';
-import { useEffect } from 'react';
-import './App.css';
+import React from "react";
+import { useEffect } from "react";
+import "./App.css";
 // import Login from './components/Login';
 // import Logout from './components/Logout';
-import LoginHooks from './components/LoginHooks';
-import LogoutHooks from './components/LogoutHooks';
-import { apiTest } from './lib/api';
+import LoginHooks from "./components/LoginHooks";
+import LogoutHooks from "./components/LogoutHooks";
+import { apiTest } from "./lib/api";
 
 import {
   BrowserRouter as Router,
@@ -14,13 +14,13 @@ import {
   Switch,
 } from "react-router-dom";
 import Home from "./components/pages/Home";
-import NavBar from "./components/NavBar"
+import NavBar from "./components/NavBar";
 // import Search from "./components/pages/search/Search"
-import {SearchFront} from "./components/pages/search/SearchFront"
-import Hotel  from './components/pages/Hotel'
+import { SearchFront } from "./components/pages/search/SearchFront";
+import Hotel from "./components/Hotel";
 
 function App() {
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
@@ -30,16 +30,15 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/search" >
-            <SearchFront/>
+          <Route path="/search">
+            <SearchFront />
             {/* <Search /> */}
           </Route>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginHooks />
-            <LogoutHooks/>
+            <LogoutHooks />
           </Route>
-
-          <Route path="/hotel" exact>
+          <Route path="/hotel">
             <Hotel />
           </Route>
         </Switch>
