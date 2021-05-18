@@ -18,6 +18,7 @@ const Search = () => {
   const [landmarks, setLandmarks] = useState('');
   const [transport, setTransport] = useState('');
 
+<<<<<<< HEAD:src/components/Search.jsx
   useEffect(() => {
     // ATTENTION!!! Below are the 5 endpoints available to us. See 'api.jsx' for the mock queries + console.logs. The data you get when performing a search, is from the first endpoint, used in 'onSubmit'.
     // DO NOT UNMARK all endpoints at the same time - you can only send one query (for one endpoint) at a time.
@@ -28,6 +29,13 @@ const Search = () => {
     // getPropertiesPhotos();
     // getReviews
   }, []);
+=======
+ 
+
+  useEffect(() => {
+    console.log(hotels);
+  }, [hotels]);
+>>>>>>> dc878fbe52af51f99f7ea3c9a3e33c64b58e0529:src/components/pages/search/Search.jsx
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -43,15 +51,17 @@ const Search = () => {
         useQueryString: true,
       })
       .end(function (result) {
-        console.log(result);
-        console.log({ city: result.body.suggestions[0].entities });
+        // console.log(result);
+        // console.log({ city: result.body.suggestions[0].entities });
         console.log({ hotel: result.body.suggestions[1].entities });
+        console.log("hotel name", {
+          hotel_name: result.body.suggestions[1].entities[0].name});
         console.log({
           landmark: result.body.suggestions[2].entities,
         });
-        console.log({
-          transport: result.body.suggestions[3].entities,
-        });
+        // console.log({
+        //   transport: result.body.suggestions[3].entities,
+        // });
         setCities(
           JSON.stringify({ city: result.body.suggestions[0].entities })
         );
