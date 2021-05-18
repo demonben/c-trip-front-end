@@ -188,3 +188,43 @@ const user = {
 export function logInUser(user) {
   return axios.post('http://127.0.0.1:5500/login', user);
 }
+
+////////////// TRIPS //////////////////
+// const trip = {
+// 	name : "roadtrip in France",
+// 	status : "passed", 
+// 	reason : "vacation", 
+// 	startDate : "new Date",
+// 	endDate : "new Date",
+// 	note : "blablabla",
+// 	createdBy : "609d67dedb7dd11cced09518"
+// }
+export function createTrip(trip, token) {  
+  return axios.post('http://127.0.0.1:5500/trips', trip, {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+    });
+}
+
+export async function getTrips() {
+  const response = await axios.get('http://127.0.0.1:5500/trips');
+  return response.data.users
+}
+
+export function getTripById(tripId, token) {  
+  return axios.get(`http://127.0.0.1:5500/trips/trip/${tripId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+  });
+}
+
+// const trip = {createdBy: "609d67dedb7dd11cced09518"} provide the userId
+export function getTripByUserId(trip, token) {  
+  return axios.post('http://127.0.0.1:5500/trips/userTrips', trip, {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+    });
+}
