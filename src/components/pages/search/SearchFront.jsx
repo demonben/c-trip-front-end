@@ -4,6 +4,7 @@ import { TextField } from "@material-ui/core";
 import { ListOfResults } from "./ListOfResults";
 import Button from "@material-ui/core/Button";
 import { searchRequest } from "../../../lib/api";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const hotelMockInfo = {
   locationId: 139009,
@@ -36,6 +37,8 @@ export const SearchFront = () => {
   const [numberOfRoom, setNumberOfRoom] = useState("");
   const [adults, setAdults] = useState("");
 
+  const [loader, setLoader] = useState(true);
+
   // const [hotelInfo, setHotelInfo] = useState("");
   // useEffect(() => {
   //   setHotelInfo(hotelMockInfo);
@@ -52,7 +55,7 @@ export const SearchFront = () => {
       adults,
     };
     // console.log(searchObject);
-    // searchRequest(searchObject);
+    searchRequest(searchObject);
   };
 
   return (
@@ -127,7 +130,15 @@ export const SearchFront = () => {
       >
         Search
       </Button>
-      <ListOfResults hotelsList={hotelsList} hotelMockInfo={hotelMockInfo} />
+
+      {loader && (
+        <ListOfResults hotelsList={hotelsList} hotelMockInfo={hotelMockInfo} />
+      )}
+      {loader && (
+        <div>
+          <CircularProgress id="loader" />
+        </div>
+      )}
     </div>
   );
 };
