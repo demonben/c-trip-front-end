@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import clientId from '../utils/clientId';
-import { useAuth } from "../context/AuthContext";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from '@material-ui/core';
 
 
 function LogoutHooks(props) {
-  const auth = useAuth();
   const [loading, setLoading] = useState(false)
   const onLogoutSuccess = (res) => {
     setLoading(true)

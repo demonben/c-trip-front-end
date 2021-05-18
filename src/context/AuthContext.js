@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-// import localforage from "localforage";
+import localforage from "localforage";
 
 export const AuthContext = createContext({
   isInitiallyLoaded: false,
@@ -19,21 +19,21 @@ const AuthProvider = (props) => {
   const [token, setToken] = useState();
   const saveToken = async (token) => {
     setToken(token);
-    // await localforage.setItem(tokenKey, token);
+    await localforage.setItem(tokenKey, token);
   };
   const removeToken = async () => {
     setToken();
-    // await localforage.removeItem(tokenKey);
+    await localforage.removeItem(tokenKey);
   };
 
-//   useEffect(() => {
-//     localforage.getItem(tokenKey).then(token => {
-//       if (token) {
-//         setToken(token);
-//       }
-//       setIsInitiallyLoaded(true);
-//     });
-//   }, []);
+  useEffect(() => {
+    localforage.getItem(tokenKey).then(token => {
+      if (token) {
+        setToken(token);
+      }
+      setIsInitiallyLoaded(true);
+    });
+  }, []);
  
   return (
     <AuthContext.Provider

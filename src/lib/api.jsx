@@ -5,7 +5,7 @@ var unirest = require("unirest");
 
 const rapidKey = "58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126";
 
-const axios = require("axios").default;
+// const axios = require("axios").default;
 const BaseUrl = "http://127.0.0.1:5500";
 
 // function getAuthConfig(token) {
@@ -205,13 +205,7 @@ export function createUser(newUser) {
 }
 
 //log in without google
-const user = {
-  email: "michael@jackson.com",
-  password: "michael",
-};
-export function logInUser(user) {
-  return axios.post('http://127.0.0.1:5500/login', user);
-}
+
 
 ////////////// TRIPS //////////////////
 // const trip = {
@@ -251,4 +245,13 @@ export function getTripByUserId(trip, token) {
         'Authorization': `Bearer ${token}` 
       }
     });
+}
+export async function logInUser(user) {
+  const response = await axios.post('http://127.0.0.1:5500/login', user);
+  return response.data
+}
+
+export async function logInGoogle(user) {
+  const response = await axios.post('http://127.0.0.1:5500/google', user);
+  return response.data
 }
