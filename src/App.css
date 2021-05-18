@@ -13,7 +13,9 @@ body{
 .home-back{
   background-image: url("https://res.cloudinary.com/alinanovof/image/upload/v1620928027/pexels-tatiana-614484_wcyyy3.jpg");
 }
- 
+
+
+
 /* Search components start*/
 .hotelsList{
   display: grid;

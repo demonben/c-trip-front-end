@@ -1,13 +1,14 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-import { AppBar, Toolbar } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
+import { AppBar, Button, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import LoginHooks from "./LoginHooks";
-import LogoutHooks from "./LogoutHooks";
-import { useAuth } from "../context/AuthContext";
 import LoginForm from "./LoginForm";
+import { useGoogleLogout } from 'react-google-login';
+import clientId from '../utils/clientId';
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   navLink: {
@@ -17,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   title: {
-    flexGrow: 1,
-    marginRight: theme.spacing(40),
+    marginLeft: theme.spacing(5),
+    justifySelf: "center"
   },
   btn: {
     marginRight: theme.spacing(3),
@@ -31,58 +32,82 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 0,
     fontWeight: "bold",
     color: "black",
+    fontFamily: 'Montserrat, sans-serif',
+    textTransform: 'none',
+    '&:hover':{
+      backgroundColor: 'white'
+    }
   },
   bar: {
     boxShadow: "none",
-    marginTop: "1rem"
+    marginTop: "1rem",
   },
   dialog: {
     padding: "2rem",
   },
+  flex: {
+    display: "flex",
+    justifyContent: "space-between"
+  }
 }));
 
 const NavBar = () => {
-  const auth = useAuth();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const handleModalOpen = () => setModalIsOpen(true);
   const handleModalClose = () => setModalIsOpen(false);
-  const [logoutOpen, setLogoutOpen] = useState(false);
-  const handleLogoutOpen = () => setLogoutOpen(true);
-  const handleLogoutClose = () => setLogoutOpen(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+  const [successMsg, setSuccessMsg] = useState(false)
+  const onLogoutSuccess = (res) => {
+    console.log('Logged out Success');
+    localStorage.removeItem('authToken')
+    setSuccessMsg(true)
+  };
+
+  const onFailure = () => {
+    console.log('Handle failure cases');
+  };
+  const { signOut } = useGoogleLogout({
+    clientId,
+    onLogoutSuccess,
+    onFailure,
+  });
+  const handleLogout = () => {
+   signOut()
+  }
   const classes = useStyles();
   return (
     <AppBar position="static" color="transparent" className={classes.bar}>
-      <Toolbar>
+      <Toolbar className={classes.flex}>
         <h3 className={classes.title}>cTrip</h3>
+        <div>
         <NavLink className={classes.navLink} exact to="/">
           Home
         </NavLink>
-        <NavLink className={classes.navLink} to="/">
+        {localStorage.authToken && <NavLink className={classes.navLink} to="/">
           My Trips
-        </NavLink>
+        </NavLink>}
         <NavLink className={classes.navLink} to="/search">
           Search
         </NavLink>
         
-        {!localStorage.authToken && 
+        {!localStorage.authToken  && 
         (<>
-        <Link className={classes.btn} onClick={handleModalOpen}>
+        <Button className={classes.btn} onClick={handleModalOpen}>
         Sign Up
-      </Link>
-      <Link className={classes.btn} onClick={handleLoginOpen}>
+      </Button>
+      <Button className={classes.btn} onClick={handleLoginOpen}>
         Login
-      </Link>
+      </Button>
       </>)
         }
           
           {localStorage.authToken && 
-          <Link className={classes.btn} onClick={handleLogoutOpen}>
+          <Button className={classes.btn} onClick={handleLogout}>
             Log Out
-          </Link>}
-        
+          </Button>}
+          </div>
         <Dialog
           open={modalIsOpen}
           onClose={handleModalClose}
@@ -91,16 +116,6 @@ const NavBar = () => {
         >
           <div className={classes.dialog}>
             <LoginHooks hideModal={handleModalClose} />
-          </div>
-        </Dialog>
-        <Dialog
-          open={logoutOpen}
-          onClose={handleLogoutClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          <div className={classes.dialog}>
-            <LogoutHooks hideModal={handleLogoutClose} />
           </div>
         </Dialog>
         <Dialog
@@ -114,6 +129,7 @@ const NavBar = () => {
           </div>
         </Dialog>
       </Toolbar>
+      {(successMsg && !localStorage.authToken) && (<Alert severity="success">Logged Out Successfully</Alert>)}
     </AppBar>
   );
 };

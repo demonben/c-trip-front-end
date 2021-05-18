@@ -4,13 +4,31 @@ import { useGoogleLogin } from "react-google-login";
 import clientId from "../utils/clientId";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
-// import { login } from "../../api/auth";
-// import { useAuth } from '../../context/AuthContext'
+import { logInGoogle, logInUser } from "../lib/api";
+import { TextField } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    textField: {
+     marginBottom: "0.8rem",
+     marginLeft: "1rem",
+     border: "none",
+     padding: '0.3rem',
+    },
+    btn: {
+        marginBottom: "1rem"
+    },
+    alert: {
+        marginBottom: "0.8rem",
+        paddingTop: "0",
+        paddingBottom: "0"
+    }
+  }));
 
 function LoginForm(props) {
-//   const auth = useAuth();
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -21,9 +39,16 @@ const [loading, setLoading] = useState(false);
     },
   });
   const onSuccess = async (res) => {
+    console.log(res.profileObj)
+    const user = {
+        email: res.profileObj.email,
+        firstName: res.profileObj.givenName,
+        lastName: res.profileObj.familyName,
+    }
+    const token = res.tokenObj.id_token
+    // await logInGoogle(user, token)
     setLoading(true);
-    // auth.saveToken(token)
-    localStorage.setItem("authToken", res.tokenObj.access_token);
+    localStorage.setItem("authToken", res.tokenObj.id_token);
     props.hideModal();
     setLoading(false);
   };
@@ -37,25 +62,25 @@ const [loading, setLoading] = useState(false);
     onSuccess,
     onFailure,
     clientId,
-    isSignedIn: true,
-    accessType: "offline",
-    // responseType: 'code',
-    // prompt: 'consent',
   });
   const submitLogin = async (values) => {
-      const email = values.email;
-      const password = values.password;
+    const loginUser = {
+      email: values.email,
+      password: values.password,
+    };
+    console.log(loginUser);
     try {
-    //   const { token } = await login(email, password);
-    //   await auth.saveToken(token)
+      const { token } = await logInUser(loginUser)
+      await localStorage.setItem("authToken", token)
       props.hideModal();
     } catch (err) {
-      setErrorMsg(err.response.data);
+      console.log(err.message);
     }
   };
   return (
+      <>
     <form className="signup-form" onSubmit={formik.handleSubmit}>
-       {errorMsg && (
+      {errorMsg && (
         <div className="alert alert-danger" role="alert">
           {errorMsg}
         </div>
@@ -64,9 +89,10 @@ const [loading, setLoading] = useState(false);
         <label htmlFor="email" className="form-label">
           Email
         </label>
-        <input
+        <TextField 
+          variant="outlined"
           type="email"
-          className="form-control"
+          className={classes.textField}
           id="email"
           onChange={formik.handleChange}
           value={formik.values.email}
@@ -76,25 +102,28 @@ const [loading, setLoading] = useState(false);
         <label htmlFor="password" className="form-label">
           Password
         </label>
-        <input
+        <TextField 
+        variant="outlined"
           type="password"
-          className="form-control"
+          className={classes.textField}
           id="password"
           onChange={formik.handleChange}
           value={formik.values.password}
         />
       </div>
       <div className="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" className="btn btn-primary mx-auto">
+        <Button variant="contained" className={classes.btn} type="submit">
           Login
-        </button>
+        </Button>
       </div>
+      <Divider/>
       <div>OR</div>
-      <Button variant="contained" onClick={signIn} className="button">
-        <img src="icons/google.svg" alt="google login" className="icon"></img>
-        <span className="buttonText">Sign in with Google</span>
-      </Button>
     </form>
+     <Button variant="contained" onClick={signIn} className="button">
+     <img src="icons/google.svg" alt="google login" className="icon"></img>
+     <span className="buttonText">Sign in with Google</span>
+   </Button>
+   </>
   );
 }
 

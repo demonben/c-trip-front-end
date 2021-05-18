@@ -1,8 +1,7 @@
-import { createUser } from "../lib/api";
+import { createUser, logInUser } from "../lib/api";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import { useAuth } from '../context/AuthContext'
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Alert } from "@material-ui/lab";
@@ -50,26 +49,28 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const SignUpForm = (props) => {
-  const auth = useAuth();
   const [errorMsg, setErrorMsg] = useState("");
   const classes = useStyles();
   const addUserOnSubmit = async (values) => {
       const newUser = {
            email: values.email,
            password: values.password,
-        //    passwordConfirmation = values.passwordConfirmation,
            firstName: values.fname,
            lastName: values.lname,
-           tel: values.tel,
+           phoneNumber: values.tel,
+      }
+      const loginUser = {
+        email: values.email,
+        password: values.password,
       }
     try {
       await createUser(newUser);
-    //   const { token } = await login(email, password);
-    //   await auth.saveToken(token)
-    localStorage.setItem("authToken", "token")
+      const { token } = await logInUser(loginUser)
+      console.log(token)
+      localStorage.setItem("authToken", token)
       props.hideModal();
     } catch (err) {
-      setErrorMsg(err.response.data.errors[0].msg);
+    setErrorMsg(err.message);
     }
   };
 

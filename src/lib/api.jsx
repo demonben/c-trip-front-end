@@ -181,10 +181,12 @@ export function createUser(newUser) {
 }
 
 //log in without google
-const user = {
-  email : "michael@jackson.com",
-  password : "michael"
+export async function logInUser(user) {
+  const response = await axios.post('http://127.0.0.1:5500/login', user);
+  return response.data
 }
-export function logInUser(user) {
-  return axios.post('http://127.0.0.1:5500/login', user);
+
+export async function logInGoogle(user) {
+  const response = await axios.post('http://127.0.0.1:5500/google', user);
+  return response.data
 }
