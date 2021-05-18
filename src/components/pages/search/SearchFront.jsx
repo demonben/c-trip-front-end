@@ -1,8 +1,34 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
 import { ListOfResults } from "./ListOfResults";
 import Button from "@material-ui/core/Button";
+import { searchRequest } from "../../../lib/api";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const hotelMockInfo = {
+  locationId: 139009,
+  name: "The Inbal2 Jerusalem",
+  address: "Liberty Bell Park, 3, Jabotinsky St., Jerusalem, 9214502, Israel",
+  tagLine:
+    "<b>Luxury hotel with full-service spa, connected to the convention center, near Jerusalem Great Synagogue</b>",
+  rating: 5,
+  price: { formatted: "$287", plain: 287 },
+  priceInfo: "nightly price per room",
+  totalPrice: "(<strong>$574</strong> for 2 nights)",
+  images: [
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/3e55f86d_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/c50b8fb9_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/a959563c_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/f6d1907a_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/8cd72c68_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/0f80fecd_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/be9d1046_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/89e88e9e_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/ab1dbbf7_z.jpg",
+    "https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/37025150_z.jpg",
+  ],
+};
 
 export const SearchFront = () => {
   const [search, setSearch] = useState("");
@@ -11,10 +37,16 @@ export const SearchFront = () => {
   const [numberOfRoom, setNumberOfRoom] = useState("");
   const [adults, setAdults] = useState("");
 
+  const [loader, setLoader] = useState(true);
+
+  // const [hotelInfo, setHotelInfo] = useState("");
+  // useEffect(() => {
+  //   setHotelInfo(hotelMockInfo);
+  // }, []);
+  // console.log(hotelInfo);
+
   const [hotelsList, setHotelsList] = useState([1, 2, 3, 4, 5]);
-
   const searchHandler = () => {
-
     const searchObject = {
       search,
       checkInDate,
@@ -22,7 +54,8 @@ export const SearchFront = () => {
       numberOfRoom,
       adults,
     };
-    console.log(searchObject);
+    // console.log(searchObject);
+    searchRequest(searchObject);
   };
 
   return (
@@ -97,11 +130,15 @@ export const SearchFront = () => {
       >
         Search
       </Button>
-      <ListOfResults hotelsList={hotelsList} />
+
+      {loader && (
+        <ListOfResults hotelsList={hotelsList} hotelMockInfo={hotelMockInfo} />
+      )}
+      {loader && (
+        <div>
+          <CircularProgress id="loader" />
+        </div>
+      )}
     </div>
   );
 };
-
-
-
-  
