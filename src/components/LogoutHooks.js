@@ -16,6 +16,7 @@ function LogoutHooks(props) {
   };
 
   const onFailure = () => {
+    localStorage.removeItem('authToken')
     console.log('Handle failure cases');
   };
 

@@ -1,3 +1,4 @@
+import { ControlPointDuplicateOutlined } from '@material-ui/icons';
 import axios from 'axios';
 
 // const axios = require("axios").default;
@@ -73,18 +74,19 @@ export function getTripById(tripId, token) {
 }
 
 // const trip = {createdBy: "609d67dedb7dd11cced09518"} provide the userId
-export function getTripByUserId(trip, token) {
-  return axios.post('https://ctrip-server.herokuapp.com/trips/userTrips', trip, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export async function getTripByUserId(trip) {
+  const response = await axios.post('https://ctrip-server.herokuapp.com/trips/userTrips', trip);
+  console.log(response.data)
+  return response.data
 }
+
 export async function logInUser(user) {
   const response = await axios.post(
     'https://ctrip-server.herokuapp.com/login',
     user
   );
+  console.log(response.data)
+  localStorage.setItem("userId", response.data.user._id)
   return response.data;
 }
 
@@ -97,16 +99,9 @@ export async function logInGoogle(user) {
 }
 
 export async function postNote(note) {
-  const response = await axios.post(
+  const response = await axios.put(
     'https://ctrip-server.herokuapp.com/note',
     note
-  );
-  return response.data;
-}
-
-export async function getNote() {
-  const response = await axios.get(
-    'https://ctrip-server.herokuapp.com/note'
   );
   return response.data;
 }
