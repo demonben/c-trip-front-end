@@ -15,7 +15,6 @@ export const HotelItem = ({
   hotel,
   checkInDate,
   checkOutDate,
-  key
 }) => {
   // console.log(hotel);
   const bookHotel = () => {
@@ -34,14 +33,15 @@ export const HotelItem = ({
   return (
     <div className="hotelItem">
       
-      <Card key={key}>
+      <Card >
         <CardActionArea>
-          <img
+          {hotel.images[0] && <img
             src={hotel.images[0]}
-            alt="hotel photo"
+            alt="hotel"
             width="300"
             height="200"
-          />
+          />}
+          
           <CardMedia
             src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
             title="Contemplative Reptile"
