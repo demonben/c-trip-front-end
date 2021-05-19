@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const axios = require("axios").default;
-const BaseUrl = 'http://127.0.0.1:5500';
+const BaseUrl = 'https://ctrip-server.herokuapp.com';
 
 // function getAuthConfig(token) {
 //   return {
@@ -50,7 +50,7 @@ export function createUser(newUser) {
 // 	createdBy : "609d67dedb7dd11cced09518"
 // }
 export function createTrip(trip, token) {
-  return axios.post('http://127.0.0.1:5500/trips', trip, {
+  return axios.post('https://ctrip-server.herokuapp.com/trips', trip, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -58,12 +58,12 @@ export function createTrip(trip, token) {
 }
 
 export async function getTrips() {
-  const response = await axios.get('http://127.0.0.1:5500/trips');
+  const response = await axios.get('https://ctrip-server.herokuapp.com/trips');
   return response.data.users;
 }
 
 export function getTripById(tripId, token) {
-  return axios.get(`http://127.0.0.1:5500/trips/trip/${tripId}`, {
+  return axios.get(`https://ctrip-server.herokuapp.com/trips/trip/${tripId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -72,7 +72,7 @@ export function getTripById(tripId, token) {
 
 // const trip = {createdBy: "609d67dedb7dd11cced09518"} provide the userId
 export function getTripByUserId(trip, token) {
-  return axios.post('http://127.0.0.1:5500/trips/userTrips', trip, {
+  return axios.post('https://ctrip-server.herokuapp.com/trips/userTrips', trip, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
