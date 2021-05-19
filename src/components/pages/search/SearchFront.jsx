@@ -56,7 +56,7 @@ export const SearchFront = () => {
       adults,
     };
     const searchResult = await searchRequest(searchObject);
-    // console.log(searchResult.data.results);
+    console.log(searchResult.data.results);
 
     setHotelsList(searchResult.data.results);
 
