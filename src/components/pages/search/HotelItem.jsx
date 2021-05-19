@@ -11,6 +11,9 @@ const { Link } = require("react-router-dom");
 
 export const HotelItem = ({ hotel, hotelMockInfo }) => {
   // console.log(hotel);
+  const bookHotel = () => {
+    const 
+  }
   return (
     <div className="hotelItem">
       <div>3</div>
@@ -45,7 +48,8 @@ export const HotelItem = ({ hotel, hotelMockInfo }) => {
               More Information
             </Button>
           </Link>
-          
+          <Hotel hotel={hotel} />
+          <Button onClick={bookHotel}>Book</Button>
         </CardActions>
       </Card>
     </div>
