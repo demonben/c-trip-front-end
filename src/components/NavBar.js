@@ -99,7 +99,7 @@ const NavBar = () => {
         <NavLink className={classes.navLink} exact to="/">
           Home
         </NavLink>
-        <NavLink className={classes.navLink} to="/">
+        <NavLink className={classes.navLink} to="/myTrips">
           My Trips
         </NavLink>
         <NavLink className={classes.navLink} to="/search">
