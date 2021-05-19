@@ -1,5 +1,5 @@
 import Notes from "../Notes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
+import { getTripByUserId } from "../../lib/api";
 const { Link } = require("react-router-dom");
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MyTrips() {
+    const [trip, setTrip] = useState()
+    useEffect(() => {
+        const id = {createdBy: localStorage.getItem("userId")}
+        getTripByUserId(id).then((data) => {
+            setTrip(data[0]);
+            console.log(data.data[0])
+          });
+          
+      }, [localStorage.getItem("userId")]);
     const classes = useStyles();
   return (
     <>

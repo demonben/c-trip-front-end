@@ -137,7 +137,12 @@ export const SearchFront = () => {
       </Button>
 
       {!loader && (
-        <ListOfResults hotelsList={hotelsList} hotelMockInfo={hotelMockInfo} />
+        <ListOfResults
+          checkInDate={checkInDate}
+          checkOutDate={checkOutDate}
+          hotelsList={hotelsList}
+          hotelMockInfo={hotelMockInfo}
+        />
       )}
       {loader && (
         <div>

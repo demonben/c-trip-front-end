@@ -7,16 +7,33 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Hotel } from "@material-ui/icons";
+import { createTrip } from "../../../lib/api";
 const { Link } = require("react-router-dom");
 
-export const HotelItem = ({ hotel, hotelMockInfo }) => {
+export const HotelItem = ({
+  hotel,
+  hotelMockInfo,
+  checkInDate,
+  checkOutDate,
+}) => {
   // console.log(hotel);
   const bookHotel = () => {
-    const 
-  }
+    const trip = {
+      name: hotel.name,
+      description: hotel.tagLine,
+      image: hotel.images[0],
+      price: hotel.price.formatted,
+      startDate: checkInDate,
+      endDate: checkOutDate,
+      createdBy: localStorage.getItem("userId")
+    };
+    console.log(trip)
+    createTrip(trip);
+  };
   return (
     <div className="hotelItem">
-      <div>3</div>
+      
       <Card>
         <CardActionArea>
           <img
@@ -39,17 +56,16 @@ export const HotelItem = ({ hotel, hotelMockInfo }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          {/* <Button size="small" color="primary">
-            Share
-          </Button> */}
 
           <Link to="/hotel">
             <Button size="small" color="primary">
               More Information
             </Button>
           </Link>
-          <Hotel hotel={hotel} />
-          <Button onClick={bookHotel}>Book</Button>
+
+          <Button variant="contained" onClick={bookHotel}>
+            Book
+          </Button>
         </CardActions>
       </Card>
     </div>
