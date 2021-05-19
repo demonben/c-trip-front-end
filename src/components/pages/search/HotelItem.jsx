@@ -10,13 +10,14 @@ import Typography from "@material-ui/core/Typography";
 const { Link } = require("react-router-dom");
 
 export const HotelItem = ({ hotel, hotelMockInfo }) => {
+  // console.log(hotel);
   return (
-    <div>
-      <div className="hotelItem">{hotel}</div>
+    <div className="hotelItem">
+      <div>3</div>
       <Card>
         <CardActionArea>
           <img
-            src={hotelMockInfo.images[0]}
+            src={hotel.images[0]}
             alt="hotel photo"
             width="300"
             height="200"
@@ -27,10 +28,10 @@ export const HotelItem = ({ hotel, hotelMockInfo }) => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {hotelMockInfo.name}
+              {hotel.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {hotelMockInfo.tagLine}
+              {hotel.tagLine}
             </Typography>
           </CardContent>
         </CardActionArea>

@@ -2,8 +2,9 @@ var unirest = require("unirest");
 
 const rapidKey = "58ae950b1bmsh14bcee45d107fe4p1b83e7jsne1cab43a1126";
 
-const axios = require("axios").default;
-const BaseUrl = "http://127.0.0.1:5500";
+// const axios = require("axios").default;
+// const BaseUrl = "http://127.0.0.1:5500";
+const BaseUrl = "https://ctrip-server.herokuapp.com";
 
 // function getAuthConfig(token) {
 //   return {
@@ -13,13 +14,14 @@ const BaseUrl = "http://127.0.0.1:5500";
 //   };
 // }
 
+// https://ctrip-server.herokuapp.com/search?place=Bern&checkIn=2021-06-01&checkOut=2021-06-03&adults1=1
+
 export async function searchRequest(searchObject) {
   const { search, checkInDate, checkOutDate, adults } = searchObject;
-  console.log("api", adults);
    const response = await axios.get(
      `${BaseUrl}/search?place=${search}&checkIn=${checkInDate}&checkOut=${checkOutDate}&adults1=${adults}`
    );
-  //  console.log(response)
+   console.log(response.data)
    return response;
 }
 

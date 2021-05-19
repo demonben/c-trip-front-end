@@ -37,7 +37,7 @@ export const SearchFront = () => {
   const [numberOfRoom, setNumberOfRoom] = useState("");
   const [adults, setAdults] = useState("");
 
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   // const [hotelInfo, setHotelInfo] = useState("");
   // useEffect(() => {
@@ -45,8 +45,9 @@ export const SearchFront = () => {
   // }, []);
   // console.log(hotelInfo);
 
-  const [hotelsList, setHotelsList] = useState([1, 2, 3, 4, 5]);
-  const searchHandler = () => {
+  const [hotelsList, setHotelsList] = useState([]);
+  const searchHandler = async () => {
+    setLoader(true);
     const searchObject = {
       search,
       checkInDate,
@@ -54,8 +55,12 @@ export const SearchFront = () => {
       numberOfRoom,
       adults,
     };
-    // console.log(searchObject);
-    searchRequest(searchObject);
+    const searchResult = await searchRequest(searchObject);
+    // console.log(searchResult.data.results);
+
+    setHotelsList(searchResult.data.results);
+
+    setLoader(false);
   };
 
   return (
@@ -131,7 +136,7 @@ export const SearchFront = () => {
         Search
       </Button>
 
-      {loader && (
+      {!loader && (
         <ListOfResults hotelsList={hotelsList} hotelMockInfo={hotelMockInfo} />
       )}
       {loader && (
