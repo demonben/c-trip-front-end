@@ -13,7 +13,6 @@ const { Link } = require("react-router-dom");
 
 export const HotelItem = ({
   hotel,
-  hotelMockInfo,
   checkInDate,
   checkOutDate,
 }) => {
