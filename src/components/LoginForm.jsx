@@ -39,7 +39,6 @@ function LoginForm(props) {
     },
   });
   const onSuccess = async (res) => {
-    console.log(res.profileObj)
     const user = {
         email: res.profileObj.email,
         firstName: res.profileObj.givenName,
@@ -55,7 +54,6 @@ function LoginForm(props) {
 
   const onFailure = (res) => {
     console.log("Login failed: res:", res);
-    alert(`Failed to login.`);
   };
 
   const { signIn } = useGoogleLogin({
