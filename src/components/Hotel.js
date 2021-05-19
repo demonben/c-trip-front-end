@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import { useState } from "react";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 
 
 
@@ -110,7 +110,7 @@ export default function Hotel({ hotel}) {
 			>
 				Show pet info
       </button>
-			<Modal isOpen={modalIsOpen} onRequestClose={() => handleCloseModal()}>
+			{/* <Modal isOpen={modalIsOpen} onRequestClose={() => handleCloseModal()}> */}
 				<CssBaseline />
 				<Container
 					borderColor="grey"
@@ -199,7 +199,7 @@ export default function Hotel({ hotel}) {
 				</MuiPickersUtilsProvider> 
 				<button>book</button>
 				</Container>
-			</Modal>
+			{/* </Modal> */}
 		</React.Fragment>
 	);
 }
