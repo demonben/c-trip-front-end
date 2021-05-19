@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 const NavBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const handleModalOpen = () => setModalIsOpen(true);
@@ -85,9 +87,9 @@ const NavBar = () => {
         <NavLink className={classes.navLink} exact to="/">
           Home
         </NavLink>
-        {!localStorage.authToken && <NavLink className={classes.navLink} to="/myTrips">
+        <NavLink className={classes.navLink} to="/">
           My Trips
-        </NavLink>}
+        </NavLink>
         <NavLink className={classes.navLink} to="/search">
           Search
         </NavLink>
