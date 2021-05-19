@@ -21,6 +21,12 @@ import {
 import "date-fns";
 import PropTypes from "prop-types";
 import React from "react";
+import Dialog from "@material-ui/core/Dialog";
+import { useState } from "react";
+import Modal from "react-modal";
+
+
+
 
 
 const StyledRating = withStyles({
@@ -69,7 +75,9 @@ const theme = createMuiTheme({
 
 theme.spacing(4);
 
-export default function Hotel() {
+export default function Hotel({ hotel}) {
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+	console.log(hotel)
 	const [selectedDate, setSelectedDate] = React.useState(
 		new Date("2021-05-15T21:11:54")
 	);
@@ -77,68 +85,91 @@ export default function Hotel() {
 	const handleDateChange = (date) => {
 		setSelectedDate(date);
 	};
+
+	const handleCloseModal = () => {
+		setModalIsOpen(false);
+	};
 	return (
+
+		//   <Dialog
+		//           open={modalIsOpen}
+		//           onClose={handleModalClose}
+		//           aria-labelledby="simple-modal-title"
+		//           aria-describedby="simple-modal-description"
+		//         >
+		//           <div className={classes.dialog}>
+		//             <LoginHooks hideModal={handleModalClose} />
+		//           </div>
+		//         </Dialog>
+
 		<React.Fragment>
-			<CssBaseline />
-			<Container
-				borderColor="grey"
-				fixed
-				maxWidth="md"
-				style={{ backgroundColor: "white", height: "150vh" }}
+			<button
+				className="btn btn-primary auth"
+				onClick={() => setModalIsOpen(true)
+				}
 			>
-				<Box
-					padding="20PX"
-					component="span"
-					display="block"
-					fontSize="h6.fontSize"
-					borderColor="error.main"
+				Show pet info
+      </button>
+			<Modal isOpen={modalIsOpen} onRequestClose={() => handleCloseModal()}>
+				<CssBaseline />
+				<Container
+					borderColor="grey"
+					fixed
+					maxWidth="md"
+					style={{ backgroundColor: "white", height: "150vh" }}
 				>
-					Florentin Boutique
+					<Box
+						padding="20PX"
+						component="span"
+						display="block"
+						fontSize="h6.fontSize"
+						borderColor="error.main"
+					>
+						Florentin Boutique
 				</Box>
-				<Box component="span" display="block" fontSize="h6.fontSize">
-					20$ / 1 night
+					<Box component="span" display="block" fontSize="h6.fontSize">
+						20$ / 1 night
 				</Box>
 
-				<img src="https://images.unsplash.com/photo-1581974206967-93856b25aa13?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+					<img src="https://images.unsplash.com/photo-1581974206967-93856b25aa13?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
 
-				<Box
-					padding="15PX"
-					component="fieldset"
-					mb={3}
-					borderColor="transparent"
-				>
-					<Typography component="legend">Rate your stay</Typography>
-					<Rating
-						name="customized-empty"
-						defaultValue={4}
-						precision={0.5}
-						emptyIcon={<StarBorderIcon fontSize="inherit" />}
-					/>
+					<Box
+						padding="15PX"
+						component="fieldset"
+						mb={3}
+						borderColor="transparent"
+					>
+						<Typography component="legend">Rate your stay</Typography>
+						<Rating
+							name="customized-empty"
+							defaultValue={4}
+							precision={0.5}
+							emptyIcon={<StarBorderIcon fontSize="inherit" />}
+						/>
+					</Box>
+					<Box
+						padding="20PX"
+						component="span"
+						display="block"
+						fontSize="h6.fontSize"
+						borderColor="error.main"
+					>
+						Adress: Tzahal 365, Tel Aviv
 				</Box>
-				<Box
-					padding="20PX"
-					component="span"
-					display="block"
-					fontSize="h6.fontSize"
-					borderColor="error.main"
-				>
-					Adress: Tzahal 365, Tel Aviv
+					<Box
+						padding="20PX"
+						component="span"
+						display="block"
+						fontSize="h6.fontSize"
+					>
+						Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+						enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+						ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+						reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+						pariatur.
 				</Box>
-				<Box
-					padding="20PX"
-					component="span"
-					display="block"
-					fontSize="h6.fontSize"
-				>
-					Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-					ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur.
-				</Box>
-				correct one
-				{/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+				<MuiPickersUtilsProvider utils={DateFnsUtils}>
 					<Grid container justify="space-around">
 						<KeyboardDatePicker
 							disableToolbar
@@ -165,8 +196,15 @@ export default function Hotel() {
 							}}
 						/>
 					</Grid>
-				</MuiPickersUtilsProvider> */}
+<<<<<<< Updated upstream
+				</MuiPickersUtilsProvider>
 			</Container>
+=======
+				</MuiPickersUtilsProvider> */}
+				<button>book</button>
+				</Container>
+			</Modal>
+>>>>>>> Stashed changes
 		</React.Fragment>
 	);
 }
