@@ -1,4 +1,5 @@
 import React from "react";
+import Hotel from "../../Hotel";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -36,16 +37,12 @@ export const HotelItem = ({ hotel, hotelMockInfo }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          {/* <Button size="small" color="primary">
-            Share
-          </Button> */}
-
-          <Link to="/hotel">
+          {/* <Link to="/hotel">
             <Button size="small" color="primary">
               More Information
             </Button>
-          </Link>
-          
+          </Link> */}
+          <Hotel hotel={hotel} />
         </CardActions>
       </Card>
     </div>
