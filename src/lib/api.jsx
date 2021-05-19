@@ -187,12 +187,6 @@ export async function logInUser(user) {
 }
 
 export async function logInGoogle(user) {
-<<<<<<< Updated upstream
   const response = await axios.post('http://127.0.0.1:5500/google', user);
-=======
-  console.log(user)
-  const response = await axios.post('http://127.0.0.1:5500/google', user);
-  console.log(response.data)
->>>>>>> Stashed changes
   return response.data
 }
