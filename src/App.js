@@ -5,11 +5,11 @@ import "./App.css";
 // import Logout from './components/Logout';
 import LoginHooks from "./components/LoginHooks";
 import LogoutHooks from "./components/LogoutHooks";
-import { apiTest } from "./lib/api";
+// import { apiTest } from "./lib/api";
 
 import {
   BrowserRouter as Router,
-  Redirect,
+  // Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -33,11 +33,10 @@ function App() {
           </Route>
           <Route path="/search">
             <SearchFront />
-            {/* <Search /> */}
-          </Route>
+               </Route>
           <Route path="/myTrips">
             <MyTrips />
-            {/* <Search /> */}
+                   
           </Route>
           <Route path="/login">
             <LoginHooks />
