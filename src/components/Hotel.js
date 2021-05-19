@@ -196,15 +196,10 @@ export default function Hotel({ hotel}) {
 							}}
 						/>
 					</Grid>
-<<<<<<< Updated upstream
-				</MuiPickersUtilsProvider>
-			</Container>
-=======
-				</MuiPickersUtilsProvider> */}
+				</MuiPickersUtilsProvider> 
 				<button>book</button>
 				</Container>
 			</Modal>
->>>>>>> Stashed changes
 		</React.Fragment>
 	);
 }
