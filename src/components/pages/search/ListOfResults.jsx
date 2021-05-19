@@ -1,13 +1,13 @@
 import React from 'react'
 import {HotelItem} from './HotelItem'
 
-export const ListOfResults = ({ hotelsList }) => {
-        <h1>ds</h1>
+export const ListOfResults = ({ hotelsList, hotelMockInfo }) => {
   return (
     <div className="hotelsList">
-      {hotelsList.map((hotel) => (
-        <HotelItem hotel={hotel} key={hotel} />
-      ))}
+      {hotelsList.map((hotel) =>
+        // console.log(hotel.locationId)
+        <HotelItem hotel={hotel} hotelMockInfo={hotelMockInfo} key={hotel.locationId} />
+      )}
     </div>
   );
 };

@@ -27,14 +27,17 @@ body{
 
 .hotelItem{
   margin-top: 10px;
-  padding: 18px;
-  border: indigo solid 1px;
+  padding: 20px;
+  /* border: indigo solid 1px; */
 }
 .search{
 margin-top: 10px;
 }
 #button{
 margin-top: 10px;
+}
+#loader{
+  margin-top: 20px;
 }
 /* Search components end*/
 
