@@ -1,8 +1,9 @@
-import { ControlPointDuplicateOutlined } from '@material-ui/icons';
+
 import axios from 'axios';
 
 // const axios = require("axios").default;
 const BaseUrl = 'https://ctrip-server.herokuapp.com';
+// const BaseUrl = 'http://127.0.0.1:5500';
 
 // function getAuthConfig(token) {
 //   return {
@@ -95,6 +96,7 @@ export async function logInGoogle(user) {
     'https://ctrip-server.herokuapp.com/google',
     user
   );
+  localStorage.setItem("userId", response.data.user.id)
   return response.data;
 }
 
