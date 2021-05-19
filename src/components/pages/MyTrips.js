@@ -35,7 +35,7 @@ export default function MyTrips() {
       <Grid container direction="row" justify="center" alignItems="center">
         {trips &&
           trips.map((trip) => (
-            <Card className={classes.card}>
+            <Card key={trip.createdAt} className={classes.card}>
               
                 <img
                   src={trip.image}
