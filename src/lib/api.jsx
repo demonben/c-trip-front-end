@@ -11,6 +11,8 @@ const BaseUrl = 'https://ctrip-server.herokuapp.com';
 //   };
 // }
 
+// https://ctrip-server.herokuapp.com/search?place=Bern&checkIn=2021-06-01&checkOut=2021-06-03&adults1=1
+
 export async function searchRequest(searchObject) {
   const { search, checkInDate, checkOutDate, adults } = searchObject;
   console.log('api', adults);
