@@ -63,7 +63,6 @@ const NavBar = () => {
   const [successMsg, setSuccessMsg] = useState(false)
   const onLogoutSuccess = (res) => {
     console.log('Logged out Success');
-    localStorage.removeItem('authToken')
     setSuccessMsg(true)
   };
 
@@ -76,6 +75,7 @@ const NavBar = () => {
     onFailure,
   });
   const handleLogout = () => {
+  localStorage.removeItem('authToken')
    signOut()
   }
   const classes = useStyles();
