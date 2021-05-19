@@ -95,3 +95,18 @@ export async function logInGoogle(user) {
   );
   return response.data;
 }
+
+export async function postNote(note) {
+  const response = await axios.post(
+    'https://ctrip-server.herokuapp.com/note',
+    note
+  );
+  return response.data;
+}
+
+export async function getNote() {
+  const response = await axios.get(
+    'https://ctrip-server.herokuapp.com/note'
+  );
+  return response.data;
+}
