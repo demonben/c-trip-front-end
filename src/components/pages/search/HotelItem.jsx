@@ -42,22 +42,6 @@ export const HotelItem = ({
             width="300"
             height="200"
           />}
-          
-          {/* <CardMedia
-            src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {hotel.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {hotel.tagLine}
-            </Typography>
-          </CardContent>
-        </CardActionArea> */}
-        {/* <CardActions> */}
-
             <CardMedia
               src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
               title="Contemplative Reptile"
@@ -72,11 +56,6 @@ export const HotelItem = ({
             </CardContent>
           </CardActionArea>
           <CardActions>
-            {/* <Link to="/hotel">
-            <Button size="small" color="primary">
-              More Information
-            </Button>
-          </Link> */}
             <Hotel
               hotel={hotel}
               checkInDate={checkInDate}

@@ -39,12 +39,6 @@ export const SearchFront = () => {
 
   const [loader, setLoader] = useState(false);
 
-  // const [hotelInfo, setHotelInfo] = useState("");
-  // useEffect(() => {
-  //   setHotelInfo(hotelMockInfo);
-  // }, []);
-  // console.log(hotelInfo);
-
   const [hotelsList, setHotelsList] = useState([]);
   const searchHandler = async () => {
     setLoader(true);
@@ -98,20 +92,6 @@ export const SearchFront = () => {
           }}
         />
       </form>
-
-      {/* <form noValidate>
-        <TextField
-          id="numberOfRoom"
-          label="number of room"
-          type="number"
-          defaultValue={numberOfRoom}
-          onChange={(e) => setNumberOfRoom(e.target.value)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </form> */}
-
       <form noValidate>
         <TextField
           id="numberOfAdults"
