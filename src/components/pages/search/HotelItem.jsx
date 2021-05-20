@@ -29,6 +29,7 @@ export const HotelItem = ({
     };
     console.log(trip)
     createTrip(trip);
+  alert("booked successfully")
   };
   return (
     <div className="hotelItem">
@@ -42,7 +43,7 @@ export const HotelItem = ({
             height="200"
           />}
           
-          <CardMedia
+          {/* <CardMedia
             src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
             title="Contemplative Reptile"
           />
@@ -54,20 +55,38 @@ export const HotelItem = ({
               {hotel.tagLine}
             </Typography>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
+        </CardActionArea> */}
+        {/* <CardActions> */}
 
-          <Link to="/hotel">
+            <CardMedia
+              src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {hotel.name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {hotel.tagLine}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            {/* <Link to="/hotel">
             <Button size="small" color="primary">
               More Information
             </Button>
-          </Link>
-
-          <Button variant="contained" onClick={bookHotel}>
-            Book
-          </Button>
-        </CardActions>
-      </Card>
+          </Link> */}
+            <Hotel
+              hotel={hotel}
+              checkInDate={checkInDate}
+              checkOutDate={checkOutDate}
+            />
+            <Button variant="contained" onClick={bookHotel}>
+              Book
+            </Button>
+          </CardActions>
+        </Card>
     </div>
   );
 };

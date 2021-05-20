@@ -6,37 +6,37 @@ import { postNote } from "../lib/api";
 
 
 const useStyles = makeStyles((theme) => ({
-	notesInput:{
-		height: "10rem",
-		padding: "2rem",
-	},
-	notesBtn: {
-		marginTop: "5rem",
-		marginRight: "1rem"
-	}
+  notesInput: {
+    height: "10rem",
+    padding: "2rem",
+  },
+  notesBtn: {
+    marginTop: "5rem",
+    marginRight: "1rem"
+  }
 }));
 export default function Notes() {
   const classes = useStyles();
   const [note, setNote] = useState("")
   const handleInput = (value) => {
-	setNote(value)
+    setNote(value)
   }
-  const handleSubmit = () =>{
-	// postNote(note)
-	console.log(note)
+  const handleSubmit = () => {
+    // postNote(note)
+    console.log(note)
   }
   return (
     <>
-      <Paper  noValidate autoComplete="off" >
+      <Paper noValidate autoComplete="off" >
         <InputBase
-		className={classes.notesInput}
+          className={classes.notesInput}
           label="Notes"
           placeholder="Add some notes..."
           id="outlined-basic"
           label="My Trip Note"
           variant="outlined"
-		  value={note}
-		  onChange={(e) => handleInput(e.target.value)}
+          value={note}
+          onChange={(e) => handleInput(e.target.value)}
         />
         <Button className={classes.notesBtn} variant="contained" onClick={handleSubmit}>
           Add

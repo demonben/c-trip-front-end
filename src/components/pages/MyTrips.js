@@ -68,8 +68,22 @@ export default function MyTrips() {
                   >
                     You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
                   </Typography>
-                </CardContent>
-              
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {trip.description}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
+                </Typography>
+              </CardContent>
+
               <CardActions>
                 {/* <Link to="/hotel">
                   <Button size="small" color="primary">

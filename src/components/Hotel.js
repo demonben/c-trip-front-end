@@ -23,7 +23,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import { useState } from "react";
-// import Modal from "react-modal";
+import Modal from "react-modal";
+import Button from "@material-ui/core/Button";
+import { createTrip } from "../lib/api";
+
 
 
 
@@ -75,7 +78,8 @@ const theme = createMuiTheme({
 
 theme.spacing(4);
 
-export default function Hotel({ hotel}) {
+export default function Hotel({ hotel, checkInDate,
+	checkOutDate, }) {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	console.log(hotel)
 	const [selectedDate, setSelectedDate] = React.useState(
@@ -89,28 +93,33 @@ export default function Hotel({ hotel}) {
 	const handleCloseModal = () => {
 		setModalIsOpen(false);
 	};
+
+	const bookHotel = () => {
+		const trip = {
+			name: hotel.name,
+			description: hotel.tagLine,
+			image: hotel.images[0],
+			price: hotel.price.formatted,
+			startDate: checkInDate,
+			endDate: checkOutDate,
+			createdBy: localStorage.getItem("userId")
+		};
+		console.log(trip)
+		createTrip(trip);
+		alert("booked successfully")
+	};
+
 	return (
 
-		//   <Dialog
-		//           open={modalIsOpen}
-		//           onClose={handleModalClose}
-		//           aria-labelledby="simple-modal-title"
-		//           aria-describedby="simple-modal-description"
-		//         >
-		//           <div className={classes.dialog}>
-		//             <LoginHooks hideModal={handleModalClose} />
-		//           </div>
-		//         </Dialog>
-
 		<React.Fragment>
-			<button
+			<Button
 				className="btn btn-primary auth"
 				onClick={() => setModalIsOpen(true)
 				}
 			>
-				Show pet info
-      </button>
-			{/* <Modal isOpen={modalIsOpen} onRequestClose={() => handleCloseModal()}> */}
+				More info
+      </Button>
+			<Modal isOpen={modalIsOpen} onRequestClose={() => handleCloseModal()}>
 				<CssBaseline />
 				<Container
 					borderColor="grey"
@@ -125,13 +134,14 @@ export default function Hotel({ hotel}) {
 						fontSize="h6.fontSize"
 						borderColor="error.main"
 					>
-						Florentin Boutique
-				</Box>
+						{hotel.name}
+					</Box>
 					<Box component="span" display="block" fontSize="h6.fontSize">
-						20$ / 1 night
+						{hotel.price.formatted} / 1 night
+
 				</Box>
 
-					<img src="https://images.unsplash.com/photo-1581974206967-93856b25aa13?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+					<img src={hotel.images[0]} />
 
 					<Box
 						padding="15PX"
@@ -142,7 +152,7 @@ export default function Hotel({ hotel}) {
 						<Typography component="legend">Rate your stay</Typography>
 						<Rating
 							name="customized-empty"
-							defaultValue={4}
+							defaultValue={hotel.rating}
 							precision={0.5}
 							emptyIcon={<StarBorderIcon fontSize="inherit" />}
 						/>
@@ -154,52 +164,59 @@ export default function Hotel({ hotel}) {
 						fontSize="h6.fontSize"
 						borderColor="error.main"
 					>
-						Adress: Tzahal 365, Tel Aviv
-				</Box>
+						Adress: {hotel.address}
+					</Box>
 					<Box
 						padding="20PX"
 						component="span"
 						display="block"
 						fontSize="h6.fontSize"
 					>
-						Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-						ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-						reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-						pariatur.
-				</Box>
-				<MuiPickersUtilsProvider utils={DateFnsUtils}>
-					<Grid container justify="space-around">
-						<KeyboardDatePicker
-							disableToolbar
-							variant="inline"
-							format="MM/dd/yyyy"
-							margin="normal"
-							id="date-picker-inline"
-							label="Date picker inline"
-							value={selectedDate}
-							onChange={handleDateChange}
-							KeyboardButtonProps={{
-								"aria-label": "change date",
-							}}
-						/>
-						<KeyboardDatePicker
-							margin="normal"
-							id="date-picker-dialog"
-							label="Date picker dialog"
-							format="MM/dd/yyyy"
-							value={selectedDate}
-							onChange={handleDateChange}
-							KeyboardButtonProps={{
-								"aria-label": "change date",
-							}}
-						/>
-					</Grid>
-				</MuiPickersUtilsProvider> 
-				<button>book</button>
+						Description: {hotel.tagLine}
+					</Box>
+					<MuiPickersUtilsProvider utils={DateFnsUtils}>
+						<Grid container justify="space-around">
+							<KeyboardDatePicker
+								disableToolbar
+								variant="inline"
+								format="MM/dd/yyyy"
+								margin="normal"
+								id="date-picker-inline"
+								label="Date picker inline"
+								value={selectedDate}
+								onChange={handleDateChange}
+								KeyboardButtonProps={{
+									"aria-label": "change date",
+								}}
+							/>
+							<KeyboardDatePicker
+								margin="normal"
+								id="date-picker-dialog"
+								label="Date picker dialog"
+								format="MM/dd/yyyy"
+								value={selectedDate}
+								onChange={handleDateChange}
+								KeyboardButtonProps={{
+									"aria-label": "change date",
+								}}
+							/>
+						</Grid>
+					</MuiPickersUtilsProvider>
+					<Button variant="contained" onClick={bookHotel}>Book</Button>
 				</Container>
-			{/* </Modal> */}
+			</Modal>
 		</React.Fragment>
 	);
 }
+
+
+		//   <Dialog
+		//           open={modalIsOpen}
+		//           onClose={handleModalClose}
+		//           aria-labelledby="simple-modal-title"
+		//           aria-describedby="simple-modal-description"
+		//         >
+		//           <div className={classes.dialog}>
+		//             <LoginHooks hideModal={handleModalClose} />
+		//           </div>
+		//         </Dialog>
