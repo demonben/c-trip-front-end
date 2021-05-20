@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(5),
     justifySelf: "center",
+    textDecoration: 0,
+    color: "black",
+    fontWeight: "bold"
   },
   btn: {
     marginRight: theme.spacing(3),
@@ -80,7 +83,10 @@ const NavBar = () => {
   return (
     <AppBar position="static" color="transparent" className={classes.bar}>
       <Toolbar className={classes.flex}>
-        <h3 className={classes.title}>cTrip</h3>
+       
+        <NavLink className={classes.title} exact to="/">
+        cTrip
+          </NavLink>
         <div>
           <NavLink className={classes.navLink} exact to="/">
             Home
