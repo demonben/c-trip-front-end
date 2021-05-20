@@ -149,7 +149,7 @@ export default function Hotel({ hotel, checkInDate,
 						mb={3}
 						borderColor="transparent"
 					>
-						<Typography component="legend">Rate your stay</Typography>
+						<Typography component="legend"></Typography>
 						<Rating
 							name="customized-empty"
 							defaultValue={hotel.rating}
@@ -176,33 +176,11 @@ export default function Hotel({ hotel, checkInDate,
 					</Box>
 					<MuiPickersUtilsProvider utils={DateFnsUtils}>
 						<Grid container justify="space-around">
-							<KeyboardDatePicker
-								disableToolbar
-								variant="inline"
-								format="MM/dd/yyyy"
-								margin="normal"
-								id="date-picker-inline"
-								label="Date picker inline"
-								value={selectedDate}
-								onChange={handleDateChange}
-								KeyboardButtonProps={{
-									"aria-label": "change date",
-								}}
-							/>
-							<KeyboardDatePicker
-								margin="normal"
-								id="date-picker-dialog"
-								label="Date picker dialog"
-								format="MM/dd/yyyy"
-								value={selectedDate}
-								onChange={handleDateChange}
-								KeyboardButtonProps={{
-									"aria-label": "change date",
-								}}
-							/>
+							<div className="MuiBox-root-47">Check in date: {checkInDate} Check out date: {checkOutDate}</div>
+							
 						</Grid>
 					</MuiPickersUtilsProvider>
-					<Button variant="contained" onClick={bookHotel}>Book</Button>
+					<Button id="book" variant="contained" onClick={bookHotel}>Book</Button>
 				</Container>
 			</Modal>
 		</React.Fragment>
@@ -210,13 +188,4 @@ export default function Hotel({ hotel, checkInDate,
 }
 
 
-		//   <Dialog
-		//           open={modalIsOpen}
-		//           onClose={handleModalClose}
-		//           aria-labelledby="simple-modal-title"
-		//           aria-describedby="simple-modal-description"
-		//         >
-		//           <div className={classes.dialog}>
-		//             <LoginHooks hideModal={handleModalClose} />
-		//           </div>
-		//         </Dialog>
+
