@@ -11,6 +11,7 @@ function LogoutHooks(props) {
     setLoading(true)
     console.log('Logged out Success');
     localStorage.removeItem('authToken')
+    localStorage.removeItem("userId")
     props.hideModal()
     setLoading(false)
   };
