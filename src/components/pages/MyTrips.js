@@ -15,7 +15,8 @@ const { Link } = require("react-router-dom");
 const useStyles = makeStyles((theme) => ({
   card: {
     marginRight: "5rem",
-    padding: "2rem"
+    padding: "2rem",
+    marginBottom: "2rem"
   },
 }));
 
@@ -69,20 +70,6 @@ export default function MyTrips() {
                   >
                     You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
                   </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
-                  {trip.description}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
-                  You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
-                </Typography>
               </CardContent>
 
               <CardActions>
