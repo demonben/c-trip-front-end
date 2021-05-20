@@ -29,44 +29,47 @@ export const HotelItem = ({
     };
     console.log(trip)
     createTrip(trip);
+  alert("booked successfully")
   };
   return (
     <div className="hotelItem">
-      
-      <Card>
-        <CardActionArea>
-          <img
-            src={hotel.images[0]}
-            alt="hotel photo"
-            width="300"
-            height="200"
-          />
-          <CardMedia
-            src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {hotel.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {hotel.tagLine}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
+      {!hotel.images[0]==[] && (
+        <Card>
+          <CardActionArea>
+            {hotel.images[0] && (
+              <img src={hotel.images[0]} alt="hotel" width="300" height="200" />
+            )}
 
-          <Link to="/hotel">
+            <CardMedia
+              src="https://exp.cdn-hotels.com/hotels/1000000/20000/16400/16366/2dac0c53_z.jpg"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {hotel.name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {hotel.tagLine}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            {/* <Link to="/hotel">
             <Button size="small" color="primary">
               More Information
             </Button>
-          </Link>
-
-          <Button variant="contained" onClick={bookHotel}>
-            Book
-          </Button>
-        </CardActions>
-      </Card>
+          </Link> */}
+            <Hotel
+              hotel={hotel}
+              checkInDate={checkInDate}
+              checkOutDate={checkOutDate}
+            />
+            <Button variant="contained" onClick={bookHotel}>
+              Book
+            </Button>
+          </CardActions>
+        </Card>
+      )}
     </div>
   );
 };

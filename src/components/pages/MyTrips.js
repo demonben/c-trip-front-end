@@ -36,40 +36,40 @@ export default function MyTrips() {
         {trips &&
           trips.map((trip) => (
             <Card className={classes.card}>
-              
-                <img
-                  src={trip.image}
-                  alt="hotel photo"
-                  width="300"
-                  height="200"
-                />
-                <CardMedia
-                  src={trip.image}
-                  title="Contemplative Reptile"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {trip.name}
+
+              <img
+                src={trip.image}
+                alt="hotel photo"
+                width="300"
+                height="200"
+              />
+              <CardMedia
+                src={trip.image}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {trip.name}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {trip.price} / 1 night
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {trip.price} / 1 night
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {trip.description}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
-                  </Typography>
-                </CardContent>
-              
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {trip.description}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  You booked this hotel for these dates: {trip.startDate} - {trip.endDate}
+                </Typography>
+              </CardContent>
+
               <CardActions>
                 {/* <Link to="/hotel">
                   <Button size="small" color="primary">

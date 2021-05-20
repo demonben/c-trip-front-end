@@ -99,7 +99,7 @@ export const SearchFront = () => {
         />
       </form>
 
-      <form noValidate>
+      {/* <form noValidate>
         <TextField
           id="numberOfRoom"
           label="number of room"
@@ -110,7 +110,7 @@ export const SearchFront = () => {
             shrink: true,
           }}
         />
-      </form>
+      </form> */}
 
       <form noValidate>
         <TextField
