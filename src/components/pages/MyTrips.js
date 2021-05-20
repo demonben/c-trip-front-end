@@ -35,6 +35,7 @@ export default function MyTrips() {
       <Grid container direction="row" justify="center" alignItems="center">
         {trips &&
           trips.map((trip) => (
+              <>
             <Card key={trip.createdAt} className={classes.card}>
               
                 <img
@@ -92,9 +93,11 @@ export default function MyTrips() {
                 </Link> */}
               </CardActions>
             </Card>
+            <Notes className={classes.notes} tripId={trip._id} getNote={trip.note}/>
+            </>
           ))}
 
-        <Notes className={classes.notes} />
+       
       </Grid>
     </>
   );

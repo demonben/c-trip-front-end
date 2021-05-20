@@ -15,15 +15,19 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1rem"
   }
 }));
-export default function Notes() {
+export default function Notes(props) {
   const classes = useStyles();
-  const [note, setNote] = useState("")
+  const [note, setNote] = useState()
   const handleInput = (value) => {
     setNote(value)
   }
   const handleSubmit = () => {
-    // postNote(note)
-    console.log(note)
+	  const sendNote = {id: props.tripId,
+		note: note,
+		createdBy: localStorage.getItem("userId")
+	}
+    postNote(sendNote)
+    console.log(sendNote)
   }
   return (
     <>
@@ -35,7 +39,8 @@ export default function Notes() {
           id="outlined-basic"
           label="My Trip Note"
           variant="outlined"
-          value={note}
+        //   value={note}
+		defaultValue={props.getNote}
           onChange={(e) => handleInput(e.target.value)}
         />
         <Button className={classes.notesBtn} variant="contained" onClick={handleSubmit}>

@@ -103,8 +103,9 @@ export async function logInGoogle(user) {
 
 export async function postNote(note) {
   const response = await axios.put(
-    'https://ctrip-server.herokuapp.com/note',
+    'https://ctrip-server.herokuapp.com/notes',
     note
   );
+  console.log(response.data)
   return response.data;
 }
