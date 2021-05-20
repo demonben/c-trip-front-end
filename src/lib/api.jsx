@@ -96,7 +96,8 @@ export async function logInGoogle(user) {
     'https://ctrip-server.herokuapp.com/google',
     user
   );
-  localStorage.setItem("userId", response.data.user.id)
+  console.log(response.data)
+  localStorage.setItem("userId", response.data.user._id)
   return response.data;
 }
 

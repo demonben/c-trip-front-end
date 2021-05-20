@@ -6,8 +6,8 @@ import { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import LoginHooks from "./LoginHooks";
 import LoginForm from "./LoginForm";
-import { useGoogleLogout } from 'react-google-login';
-import clientId from '../utils/clientId';
+import { useGoogleLogout } from "react-google-login";
+import clientId from "../utils/clientId";
 import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginLeft: theme.spacing(5),
-    justifySelf: "center"
+    justifySelf: "center",
   },
   btn: {
     marginRight: theme.spacing(3),
@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 0,
     fontWeight: "bold",
     color: "black",
-    fontFamily: 'Montserrat, sans-serif',
-    textTransform: 'none',
-    '&:hover':{
-      backgroundColor: 'white'
-    }
+    fontFamily: "Montserrat, sans-serif",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "white",
+    },
   },
   bar: {
     boxShadow: "none",
@@ -47,11 +47,9 @@ const useStyles = makeStyles((theme) => ({
   },
   flex: {
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 }));
-
-
 
 const NavBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -60,15 +58,14 @@ const NavBar = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
-  const [successMsg, setSuccessMsg] = useState(false)
+  const [successMsg, setSuccessMsg] = useState(false);
   const onLogoutSuccess = (res) => {
-    console.log('Logged out Success');
-    localStorage.removeItem('authToken')
-    setSuccessMsg(true)
+    console.log("Logged out Success");
+    setSuccessMsg(true);
   };
 
   const onFailure = () => {
-    console.log('Handle failure cases');
+    console.log("Handle failure cases");
   };
   const { signOut } = useGoogleLogout({
     clientId,
@@ -76,40 +73,44 @@ const NavBar = () => {
     onFailure,
   });
   const handleLogout = () => {
-   signOut()
-  }
+    localStorage.removeItem("authToken");
+    signOut();
+  };
   const classes = useStyles();
   return (
     <AppBar position="static" color="transparent" className={classes.bar}>
       <Toolbar className={classes.flex}>
         <h3 className={classes.title}>cTrip</h3>
         <div>
-        <NavLink className={classes.navLink} exact to="/">
-          Home
-        </NavLink>
-        <NavLink className={classes.navLink} to="/myTrips">
-          My Trips
-        </NavLink>
-        <NavLink className={classes.navLink} to="/search">
-          Search
-        </NavLink>
-        
-        {!localStorage.authToken  && 
-        (<>
-        <Button className={classes.btn} onClick={handleModalOpen}>
-        Sign Up
-      </Button>
-      <Button className={classes.btn} onClick={handleLoginOpen}>
-        Login
-      </Button>
-      </>)
-        }
-          
-          {localStorage.authToken && 
-          <Button className={classes.btn} onClick={handleLogout}>
-            Log Out
-          </Button>}
-          </div>
+          <NavLink className={classes.navLink} exact to="/">
+            Home
+          </NavLink>
+          {localStorage.authToken && (
+            <NavLink className={classes.navLink} to="/myTrips">
+              My Trips
+            </NavLink>
+          )}
+          <NavLink className={classes.navLink} to="/search">
+            Search
+          </NavLink>
+
+          {!localStorage.authToken && (
+            <>
+              <Button className={classes.btn} onClick={handleModalOpen}>
+                Sign Up
+              </Button>
+              <Button className={classes.btn} onClick={handleLoginOpen}>
+                Login
+              </Button>
+            </>
+          )}
+
+          {localStorage.authToken && (
+            <Button className={classes.btn} onClick={handleLogout}>
+              Log Out
+            </Button>
+          )}
+        </div>
         <Dialog
           open={modalIsOpen}
           onClose={handleModalClose}
@@ -131,7 +132,9 @@ const NavBar = () => {
           </div>
         </Dialog>
       </Toolbar>
-      {(successMsg && !localStorage.authToken) && (<Alert severity="success">Logged Out Successfully</Alert>)}
+      {successMsg && !localStorage.authToken && (
+        <Alert severity="success">Logged Out Successfully</Alert>
+      )}
     </AppBar>
   );
 };
