@@ -10,7 +10,6 @@ export const ListOfResults = ({
   return (
     <div className="hotelsList">
       {hotelsList.map((hotel) => (
-        // console.log(hotel.locationId)
         <HotelItem
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
